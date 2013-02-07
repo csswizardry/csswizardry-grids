@@ -68,3 +68,8 @@ If you are using silent classes then your HTML might look like this:
     .sub-content{
         @extend %desk-one-third;
     }
+
+## Demo
+
+There is a very simple demo which can be found at
+[csswizardry.github.com/csswizardry-grids](http://csswizardry.github.com/csswizardry-grids).
