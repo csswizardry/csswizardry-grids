@@ -64,20 +64,20 @@ If you are using silent classes then your HTML might look like this:
         @extend %grid;
     }
     
-    .content,
-    .sub-content{
-        @extend %grid__item;
-        @extend %one-whole;
-        @extend %lap-one-half;
-    }
+        .content,
+        .sub-content{
+            @extend %grid__item;
+            @extend %one-whole;
+            @extend %lap-one-half;
+        }
     
-    .content{
-        @extend %desk-two-thirds;
-    }
+        .content{
+            @extend %desk-two-thirds;
+        }
     
-    .sub-content{
-        @extend %desk-one-third;
-    }
+        .sub-content{
+            @extend %desk-one-third;
+        }
 
 ## Demo
 
