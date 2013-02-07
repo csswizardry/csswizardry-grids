@@ -34,6 +34,16 @@ $lap-start:             481px;
 $desk-start:            1024px;
 
 
+/**
+ * Do not edit the following variables.
+ */
+$class-type:            unquote(".");
+
+@if $use-silent-classes == true{
+    $class-type: unquote("%");
+}
+
+
 
 
 
@@ -46,7 +56,7 @@ $desk-start:            1024px;
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  * 4. Remove whitespace caused by `inline-block` elements.
  */
-.grid{
+#{$class-type}grid{
     list-style:none;                /* [1] */
     margin:0;                       /* [2] */
     padding:0;                      /* [2] */
@@ -63,7 +73,7 @@ $desk-start:            1024px;
  * 4. Reinstate removed whitespace.
  * 5. Required to combine fluid widths and fixed gutters.
  */
-.grid__item{
+#{$class-type}grid__item{
     display:inline-block;           /* [1] */
     padding-left:$gutter;           /* [2] */
     vertical-align:top;             /* [3] */
@@ -86,13 +96,6 @@ $desk-start:            1024px;
  */
 $palm-end:              $lap-start - 1px;
 $lap-end:               $desk-start - 1px;
-
-
-$class-type:            unquote(".");
-
-@if $use-silent-classes == true{
-    $class-type: unquote("%");
-}
 
 
 /**
