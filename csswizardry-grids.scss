@@ -105,35 +105,35 @@ $lap-end:               $desk-start - 1px;
 
 
     /**
-    * Whole
-    */
+     * Whole
+     */
     #{$class-type}#{$namespace}one-whole         { width:100%; }
 
 
     /**
-    * Halves
-    */
+     * Halves
+     */
     #{$class-type}#{$namespace}one-half          { width:50%; }
 
 
     /**
-    * Thirds
-    */
+     * Thirds
+     */
     #{$class-type}#{$namespace}one-third         { width:33.333%; }
     #{$class-type}#{$namespace}two-thirds        { width:66.666%; }
 
 
     /**
-    * Quarters
-    */
+     * Quarters
+     */
     #{$class-type}#{$namespace}one-quarter       { width:25%; }
     #{$class-type}#{$namespace}two-quarters      { @extend #{$class-type}#{$namespace}one-half; }
     #{$class-type}#{$namespace}three-quarters    { width:75%; }
 
 
     /**
-    * Fifths
-    */
+     * Fifths
+     */
     #{$class-type}#{$namespace}one-fifth         { width:20%; }
     #{$class-type}#{$namespace}two-fifths        { width:40%; }
     #{$class-type}#{$namespace}three-fifths      { width:60%; }
@@ -141,8 +141,8 @@ $lap-end:               $desk-start - 1px;
 
 
     /**
-    * Sixths
-    */
+     * Sixths
+     */
     #{$class-type}#{$namespace}one-sixth         { width:16.666%; }
     #{$class-type}#{$namespace}two-sixths        { @extend #{$class-type}#{$namespace}one-third; }
     #{$class-type}#{$namespace}three-sixths      { @extend #{$class-type}#{$namespace}one-half; }
@@ -151,8 +151,8 @@ $lap-end:               $desk-start - 1px;
 
 
     /**
-    * Eighths
-    */
+     * Eighths
+     */
     #{$class-type}#{$namespace}one-eighth        { width:12.5%; }
     #{$class-type}#{$namespace}two-eighths       { @extend #{$class-type}#{$namespace}one-quarter; }
     #{$class-type}#{$namespace}three-eighths     { width:37.5%; }
@@ -163,8 +163,8 @@ $lap-end:               $desk-start - 1px;
 
 
     /**
-    * Tenths
-    */
+     * Tenths
+     */
     #{$class-type}#{$namespace}one-tenth         { width:10%; }
     #{$class-type}#{$namespace}two-tenths        { @extend #{$class-type}#{$namespace}one-fifth; }
     #{$class-type}#{$namespace}three-tenths      { width:30%; }
@@ -177,8 +177,8 @@ $lap-end:               $desk-start - 1px;
 
 
     /**
-    * Twelfths
-    */
+     * Twelfths
+     */
     #{$class-type}#{$namespace}one-twelfth       { width:8.333%; }
     #{$class-type}#{$namespace}two-twelfths      { @extend #{$class-type}#{$namespace}one-sixth; }
     #{$class-type}#{$namespace}three-twelfths    { @extend #{$class-type}#{$namespace}one-quarter; }
