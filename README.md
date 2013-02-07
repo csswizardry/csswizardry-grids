@@ -1,6 +1,16 @@
 # csswizardry-grids
 
-Simple, fluid, nestable, flexible, Sass-based, responsive grid system.
+**Simple, fluid, nestable, flexible, Sass-based, responsive grid system.**
+
+* Fully responsive
+* Infinitely nestable
+* Endless possible combinations
+* Simple to understand, human-friendly classes
+* Option to keep classes out of your HTML
+* Robust
+* Simple
+* No `.clear` or `.last` classes
+* It just _works_
 
 Please see [Responsive grid systems; a solution?](http://csswizardry.com/2013/02/responsive-grid-systems-a-solution/)
 for a comprehensive overview of the principles of the grid system.
