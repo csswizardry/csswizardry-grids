@@ -6,6 +6,7 @@
  * VARIABLES............Your settings.
  * GRID SETUP...........Build the grid structure.
  * WIDTHS...............Build our responsive widths around our breakpoints.
+ * DEMO.................
  */
 /*------------------------------------*\
     $VARIABLES
@@ -31,14 +32,14 @@
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  * 4. Remove whitespace caused by `inline-block` elements.
  */
-.grid {
+.grid, .page {
   list-style: none;
   /* [1] */
   margin: 0;
   /* [2] */
   padding: 0;
   /* [2] */
-  margin-left: -24px;
+  margin-left: -12px;
   /* [3] */
   letter-spacing: -0.31em;
   /* [4] */
@@ -53,10 +54,11 @@
  * 4. Reinstate removed whitespace.
  * 5. Required to combine fluid widths and fixed gutters.
  */
-.grid__item {
+.grid__item, .content,
+.sub-content {
   display: inline-block;
   /* [1] */
-  padding-left: 24px;
+  padding-left: 12px;
   /* [2] */
   vertical-align: top;
   /* [3] */
@@ -87,7 +89,8 @@
 /**
 * Whole
 */
-.one-whole {
+.one-whole, .content,
+.sub-content {
   width: 100%;
 }
 
@@ -345,7 +348,8 @@
   /**
   * Halves
   */
-  .lap-one-half, .lap-two-quarters, .lap-three-sixths, .lap-four-eighths, .lap-five-tenths, .lap-six-twelfths {
+  .lap-one-half, .lap-two-quarters, .lap-three-sixths, .lap-four-eighths, .lap-five-tenths, .lap-six-twelfths, .content,
+  .sub-content {
     width: 50%;
   }
 
@@ -600,11 +604,11 @@
   /**
   * Thirds
   */
-  .desk-one-third, .desk-two-sixths, .desk-four-twelfths {
+  .desk-one-third, .desk-two-sixths, .desk-four-twelfths, .sub-content {
     width: 33.333%;
   }
 
-  .desk-two-thirds, .desk-four-sixths, .desk-eight-twelfths {
+  .desk-two-thirds, .desk-four-sixths, .desk-eight-twelfths, .content {
     width: 66.666%;
   }
 
@@ -706,3 +710,6 @@
     width: 91.666%;
   }
 }
+/*------------------------------------*\
+    $DEMO
+\*------------------------------------*/

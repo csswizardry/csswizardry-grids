@@ -10,12 +10,13 @@
     
     <style>
         body{
-            margin:24px;
+            margin:12px;
+            font:0.75em/1.5 sans-serif;
         }
-        p{
+        .block{
             margin:0;
-            margin-bottom:24px;
-            padding:24px;
+            margin-bottom:12px;
+            padding:12px;
             background-color:#BADA55;
             color:#fff;
         }
@@ -23,45 +24,77 @@
 </head>
 <body>
 
+    <h1>csswizardry-grids</h1>
+
+    <p>A simple, fluid, nestable, flexible, Sass-based, responsive grid system.
+       by <a href="https://twitter.com/csswizardry">@csswizardry</a>.</p>
+
+    <p>View on <a href="https://github.com/csswizardry/csswizardry-grids">GitHub</a>.</p>
+
+    <h2>Using classes in your HTML</h2>
+
     <ul class="grid">
         <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
             <div class="grid">
                 <div class="grid__item  one-half">
-                    <p>Grid</p>
+                    <p class="block">Grid</p>
                 </div>
                 <div class="grid__item  one-half">
-                    <p>Grid</p>
+                    <p class="block">Grid</p>
                 </div>
             </div>
         </li>
+
         <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+            <p class="block">Grid</p>
         </li>
-        <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+
+        <li class="grid__item  one-whole  lap-one-quarter  desk-one-fifth">
+            <p class="block">Grid</p>
         </li>
+
         <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+            <p class="block">Grid</p>
         </li>
-        <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+
+        <li class="grid__item  one-whole  lap-one-quarter  desk-one-fifth">
+            <p class="block">Grid</p>
         </li>
-        <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+
+        <li class="grid__item  one-whole  lap-one-third  desk-one-fifth">
+            <p class="block">Grid</p>
         </li>
-        <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+
+        <li class="grid__item  one-whole  lap-one-third  desk-one-fifth">
+            <p class="block">Grid</p>
         </li>
-        <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+
+        <li class="grid__item  one-whole  lap-one-third  desk-one-fifth">
+            <p class="block">Grid</p>
         </li>
+
         <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+            <p class="block">Grid</p>
         </li>
+
         <li class="grid__item  one-whole  lap-one-half  desk-one-fifth">
-            <p>Grid</p>
+            <p class="block">Grid</p>
         </li>
     </ul> 
+
+    <h2>Using <code>@extend</code> in Sass</h2>
+
+    <div class="page">
+    
+        <div class="content">
+            <p class="block">Grid</p>
+        </div>
+    
+        <div class="sub-content">
+            <p class="block">Grid</p>
+        </div>
+    
+    </div>
 
 </body>
 </html>

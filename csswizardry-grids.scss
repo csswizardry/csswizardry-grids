@@ -6,6 +6,7 @@
  * VARIABLES............Your settings.
  * GRID SETUP...........Build the grid structure.
  * WIDTHS...............Build our responsive widths around our breakpoints.
+ * DEMO.................
  */
 
 
@@ -18,7 +19,7 @@
 /**
  * Set the spacing between your grid items.
  */
-$gutter:                24px;
+$gutter:                12px;
 
 
 /**
@@ -218,4 +219,30 @@ $lap-end:               $desk-start - 1px;
 
 @media only screen and (min-width:$desk-start){
     @include device-type("desk-");
+}
+
+
+
+
+
+/*------------------------------------*\
+    $DEMO
+\*------------------------------------*/
+.page{
+    @extend .grid;
+}
+
+.content,
+.sub-content{
+    @extend .grid__item;
+    @extend .one-whole;
+    @extend .lap-one-half;
+}
+
+.content{
+    @extend .desk-two-thirds;
+}
+
+.sub-content{
+    @extend .desk-one-third;
 }
