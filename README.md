@@ -36,9 +36,9 @@ like this:
     
         <div class="grid__item  one-whole  lap-one-half  desk-two-thirds">
             ...
-        </div>
+        </div><!--
     
-        <div class="grid__item  one-whole  lap-one-half  desk-one-third">
+     --><div class="grid__item  one-whole  lap-one-half  desk-one-third">
             ...
         </div>
     
@@ -50,9 +50,9 @@ If you are using silent classes then your HTML might look like this:
     
         <div class="content">
             ...
-        </div>
+        </div><!--
     
-        <div class="sub-content">
+     --><div class="sub-content">
             ...
         </div>
     
@@ -78,6 +78,12 @@ If you are using silent classes then your HTML might look like this:
         .sub-content{
             @extend %desk-one-third;
         }
+
+The empty HTML comments are to remove whitespace caused by using `inline-block`.
+Prior to v1.1 this was tackled by using some
+[`[letter|word]-spacing` trickery](https://github.com/csswizardry/csswizardry-grids/blob/60a5075ac65282bb24fa5a5d5ed32a060ce2975f/csswizardry-grids.scss#L64-L65),
+however Chrome 25 introduced a change which meant this method now broke
+csswizardry-grids.
 
 ## Demo
 
