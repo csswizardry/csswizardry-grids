@@ -34,11 +34,11 @@ like this:
 
     <div class="grid">
     
-        <div class="grid__item  one-whole  lap-one-half  desk-two-thirds">
+        <div class="grid__item  lap-one-half  desk-two-thirds">
             ...
         </div><!--
     
-     --><div class="grid__item  one-whole  lap-one-half  desk-one-third">
+     --><div class="grid__item  lap-one-half  desk-one-third">
             ...
         </div>
     
