@@ -30,7 +30,6 @@
  * 1. Allow the grid system to be used on lists.
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
- * 4. Remove whitespace caused by `inline-block` elements.
  */
 .grid, .page {
   list-style: none;
@@ -41,18 +40,13 @@
   /* [2] */
   margin-left: -12px;
   /* [3] */
-  letter-spacing: -0.31em;
-  /* [4] */
-  word-spacing: -0.43em;
-  /* [4] */
 }
 
 /**
  * 1. Cause columns to stack side-by-side.
  * 2. Space columns apart.
  * 3. Align columns to the tops of each other.
- * 4. Reinstate removed whitespace.
- * 5. Required to combine fluid widths and fixed gutters.
+ * 4. Required to combine fluid widths and fixed gutters.
  */
 .grid__item, .content,
 .sub-content {
@@ -62,16 +56,12 @@
   /* [2] */
   vertical-align: top;
   /* [3] */
-  letter-spacing: normal;
-  /* [4] */
-  word-spacing: normal;
-  /* [4] */
   -webkit-box-sizing: border-box;
-  /* [5] */
+  /* [4] */
   -moz-box-sizing: border-box;
-  /* [5] */
+  /* [4] */
   box-sizing: border-box;
-  /* [5] */
+  /* [4] */
 }
 
 /*------------------------------------*\
