@@ -46,7 +46,8 @@
  * 1. Cause columns to stack side-by-side.
  * 2. Space columns apart.
  * 3. Align columns to the tops of each other.
- * 4. Required to combine fluid widths and fixed gutters.
+ * 4. Full-width unless told to behave otherwise.
+ * 5. Required to combine fluid widths and fixed gutters.
  */
 .grid__item, .content,
 .sub-content {
@@ -56,12 +57,14 @@
   /* [2] */
   vertical-align: top;
   /* [3] */
+  width: 100%;
+  /* [4] */
   -webkit-box-sizing: border-box;
-  /* [4] */
+  /* [5] */
   -moz-box-sizing: border-box;
-  /* [4] */
+  /* [5] */
   box-sizing: border-box;
-  /* [4] */
+  /* [5] */
 }
 
 /*------------------------------------*\
