@@ -3,6 +3,7 @@
 **Simple, fluid, nestable, flexible, Sass-based, responsive grid system.**
 
 * Fully responsive
+* Mobile first
 * Infinitely nestable
 * Endless possible combinations
 * Simple to understand, human-friendly classes

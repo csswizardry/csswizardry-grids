@@ -16,6 +16,20 @@
     $VARIABLES
 \*------------------------------------*/
 /**
+ * If you are building a non-responsive site but would still like to use
+ * csswizardry-grids, set this to false:
+ */
+$responsive:            true;
+
+
+/**
+ * Is this build mobile first? Setting to true means that all grids will be 100%
+ * width if you do not apply a more specific class to them.
+ */
+$mobile-first:          true;
+
+
+/**
  * Set the spacing between your grid items.
  */
 $gutter:                24px;
@@ -74,7 +88,9 @@ $class-type:            unquote(".");
     display:inline-block;           /* [1] */
     padding-left:$gutter;           /* [2] */
     vertical-align:top;             /* [3] */
-    width:100%;                     /* [4] */
+    @if $mobile-first == true{
+        width:100%;                 /* [4] */
+    }
     -webkit-box-sizing:border-box;  /* [5] */
        -moz-box-sizing:border-box;  /* [5] */
             box-sizing:border-box;  /* [5] */
@@ -197,21 +213,27 @@ $lap-end:               $desk-start - 1px;
 @include device-type();
 
 
-/**
- * Our breakpoint specific widths classes.
- */
-@media only screen and (max-width:$palm-end){
-    @include device-type("palm-");
-}
+@if $responsive == true{
 
-@media only screen and (min-width:$lap-start) and (max-width:$lap-end){
-    @include device-type("lap-");
-}
 
-@media only screen and (max-width:$lap-end){
-    @include device-type("portable-");
-}
+    /**
+    * Our breakpoint specific widths classes.
+    */
+    @media only screen and (max-width:$palm-end){
+        @include device-type("palm-");
+    }
 
-@media only screen and (min-width:$desk-start){
-    @include device-type("desk-");
+    @media only screen and (min-width:$lap-start) and (max-width:$lap-end){
+        @include device-type("lap-");
+    }
+
+    @media only screen and (max-width:$lap-end){
+        @include device-type("portable-");
+    }
+
+    @media only screen and (min-width:$desk-start){
+        @include device-type("desk-");
+    }
+
+
 }
