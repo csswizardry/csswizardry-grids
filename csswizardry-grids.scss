@@ -73,6 +73,7 @@ $class-type:            unquote(".");
     list-style:none;                /* [1] */
     margin:0;                       /* [2] */
     padding:0;                      /* [2] */
+    font-size:0;                    /* [2] */
     margin-left:-$gutter;           /* [3] */
 }
 
@@ -83,6 +84,7 @@ $class-type:            unquote(".");
  * 3. Align columns to the tops of each other.
  * 4. Full-width unless told to behave otherwise.
  * 5. Required to combine fluid widths and fixed gutters.
+ * 6. Normalizes the font size.
  */
 #{$class-type}grid__item{
     display:inline-block;           /* [1] */
@@ -94,6 +96,7 @@ $class-type:            unquote(".");
     -webkit-box-sizing:border-box;  /* [5] */
        -moz-box-sizing:border-box;  /* [5] */
             box-sizing:border-box;  /* [5] */
+    font-size:1em;                  /* [6] */
 }
 
 
