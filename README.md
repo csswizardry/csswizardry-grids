@@ -5,6 +5,7 @@
 * Fully responsive
 * Mobile first
 * Infinitely nestable
+* Reversible/reorderable
 * Endless possible combinations
 * Simple to understand, human-friendly classes
 * Option to keep classes out of your HTML
