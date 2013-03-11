@@ -82,6 +82,22 @@ $class-type:            unquote(".");
 }
 
 
+/**
+ * Reversed grids allow you to structure your source different to how your
+ * rendered layout will appear.
+ */
+#{$class-type}grid--rev{
+    @extend #{$class-type}grid;
+    direction:rtl;
+    text-align:right;
+}
+
+    #{$class-type}grid--rev > #{$class-type}grid__item{
+        direction:ltr;
+        text-align:left;
+    }
+
+
 
 
 

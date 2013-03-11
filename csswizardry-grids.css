@@ -31,7 +31,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.grid, .page {
+.grid, .grid--rev, .page {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -65,6 +65,21 @@
   /* [5] */
   box-sizing: border-box;
   /* [5] */
+}
+
+/**
+ * Reversed grids allow you to structure your source different to how your
+ * rendered layout will appear.
+ */
+.grid--rev {
+  direction: rtl;
+  text-align: right;
+}
+
+.grid--rev > .grid__item, .grid--rev > .content,
+.grid--rev > .sub-content {
+  direction: ltr;
+  text-align: left;
 }
 
 /*------------------------------------*\
