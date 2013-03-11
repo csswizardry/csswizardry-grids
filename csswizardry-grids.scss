@@ -217,8 +217,8 @@ $lap-end:               $desk-start - 1px;
 
 
     /**
-    * Our breakpoint specific widths classes.
-    */
+     * Our breakpoint specific widths classes.
+     */
     @media only screen and (max-width:$palm-end){
         @include device-type("palm-");
     }

@@ -16,6 +16,11 @@
 Please see [Responsive grid systems; a solution?](http://csswizardry.com/2013/02/responsive-grid-systems-a-solution/)
 for a comprehensive overview of the principles of the grid system.
 
+## Demo
+
+* [csswizardry.github.com/csswizardry-grids](http://csswizardry.github.com/csswizardry-grids).
+* [Writeup](http://csswizardry.com/2013/02/introducing-csswizardry-grids/)
+
 ## Setup
 
 Simply fill in/adjust the relevant variables.
@@ -59,6 +64,12 @@ If you are using silent classes then your HTML might look like this:
     
     </div>
 
+**Note the empty HTML comments.** These are to remove whitespace caused by using
+`inline-block`.  Prior to v1.1 this was tackled by using some
+[`[letter|word]-spacing` trickery](https://github.com/csswizardry/csswizardry-grids/blob/60a5075ac65282bb24fa5a5d5ed32a060ce2975f/csswizardry-grids.scss#L64-L65),
+however Chrome 25 introduced a change which meant this method now broke
+csswizardry-grids.
+
 …and your Sass, something like this:
 
     .page{
@@ -79,14 +90,3 @@ If you are using silent classes then your HTML might look like this:
         .sub-content{
             @extend %desk-one-third;
         }
-
-The empty HTML comments are to remove whitespace caused by using `inline-block`.
-Prior to v1.1 this was tackled by using some
-[`[letter|word]-spacing` trickery](https://github.com/csswizardry/csswizardry-grids/blob/60a5075ac65282bb24fa5a5d5ed32a060ce2975f/csswizardry-grids.scss#L64-L65),
-however Chrome 25 introduced a change which meant this method now broke
-csswizardry-grids.
-
-## Demo
-
-There is a very simple demo which can be found at
-[csswizardry.github.com/csswizardry-grids](http://csswizardry.github.com/csswizardry-grids).
