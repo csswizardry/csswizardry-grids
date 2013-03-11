@@ -20,7 +20,14 @@ for a comprehensive overview of the principles of the grid system.
 
 Simply fill in/adjust the relevant variables.
 
+* `$responsive` is used to turn csswizardry-grids’ responsive features on and
+  off. csswizardry-grids is designed primarily for responsive builds but can
+  also be used on non-responsive projects just as easily. Setting this to false
+  will simply prevent Sass generating your `palm` etc modifiers.
 * `$gutter` controls how much space there is between columns.
+* `$mobile-first` controls whether you would like unclassed grid items to
+  _initially_ adopt `width:100%;. This means that you won’t need to add a class
+  to force a grid item to take up the full width of its container.
 * `$use-silent-classes` tells csswizardry-grids whether to go ahead and compile
   solid, traditional classes (e.g. `.one-whole`) or to create Sass ‘silent’
   classes which only compile to CSS once explictly called.
