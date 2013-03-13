@@ -98,6 +98,19 @@ $class-type:            unquote(".");
     }
 
 
+/**
+ * Gutterless grids have all the properties of regular grids, minus any spacing.
+ */
+#{$class-type}grid--full{
+    @extend #{$class-type}grid;
+    margin-left:0;
+}
+
+    #{$class-type}grid--full > #{$class-type}grid__item{
+        padding-left:0;
+    }
+
+
 
 
 

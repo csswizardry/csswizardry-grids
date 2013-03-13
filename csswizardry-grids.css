@@ -31,7 +31,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.grid, .grid--rev, .page {
+.grid, .grid--rev, .grid--full, .page {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -80,6 +80,18 @@
 .grid--rev > .sub-content {
   direction: ltr;
   text-align: left;
+}
+
+/**
+ * Gutterless grids have all the properties of regular grids, minus any spacing.
+ */
+.grid--full {
+  margin-left: 0;
+}
+
+.grid--full > .grid__item, .grid--full > .content,
+.grid--full > .sub-content {
+  padding-left: 0;
 }
 
 /*------------------------------------*\
