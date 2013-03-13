@@ -4,3 +4,4 @@
 * **1.2**       Set `.grid__item` to be full-width by default
 * **1.3**       Offer switches for mobile-first and responsiveness
 * **1.4**       Add `.grid--rev` option to reverse grids’ display order
+* **1.5**       Add gutterless grids option
