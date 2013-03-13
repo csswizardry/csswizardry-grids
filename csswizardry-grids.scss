@@ -36,7 +36,7 @@ $gutter:                24px;
 
 
 /**
- * Would you like Sass’s silent classes, or regular CSS classes?
+ * Would you like Sass’ silent classes, or regular CSS classes?
  */
 $use-silent-classes:    false;
 
@@ -77,24 +77,24 @@ $class-type:            unquote(".");
 }
 
 
-/**
- * 1. Cause columns to stack side-by-side.
- * 2. Space columns apart.
- * 3. Align columns to the tops of each other.
- * 4. Full-width unless told to behave otherwise.
- * 5. Required to combine fluid widths and fixed gutters.
- */
-#{$class-type}grid__item{
-    display:inline-block;           /* [1] */
-    padding-left:$gutter;           /* [2] */
-    vertical-align:top;             /* [3] */
-    @if $mobile-first == true{
-        width:100%;                 /* [4] */
+    /**
+     * 1. Cause columns to stack side-by-side.
+     * 2. Space columns apart.
+     * 3. Align columns to the tops of each other.
+     * 4. Full-width unless told to behave otherwise.
+     * 5. Required to combine fluid widths and fixed gutters.
+     */
+    #{$class-type}grid__item{
+        display:inline-block;           /* [1] */
+        padding-left:$gutter;           /* [2] */
+        vertical-align:top;             /* [3] */
+        @if $mobile-first == true{
+            width:100%;                 /* [4] */
+        }
+        -webkit-box-sizing:border-box;  /* [5] */
+           -moz-box-sizing:border-box;  /* [5] */
+                box-sizing:border-box;  /* [5] */
     }
-    -webkit-box-sizing:border-box;  /* [5] */
-       -moz-box-sizing:border-box;  /* [5] */
-            box-sizing:border-box;  /* [5] */
-}
 
 
 /**
