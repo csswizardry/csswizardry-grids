@@ -5,6 +5,7 @@
  * CONTENTS
  * INTRODUCTION.........How the grid system works.
  * VARIABLES............Your settings.
+ * MIXINS...............Common mixins.
  * GRID SETUP...........Build the grid structure.
  * WIDTHS...............Build our responsive widths around our breakpoints.
  * PUSH.................Push classes
@@ -96,25 +97,31 @@ $use-silent-classes:    false;
  * Would you like push and pull classes enabled?
  */
 $push:                  false;
-$palm-push:             false;
-$lap-push:              false;
-$portable-push:         false;
-$desk-push:             false;
-
 $pull:                  false;
-$palm-pull:             false;
-$lap-pull:              false;
-$portable-pull:         false;
-$desk-pull:             false;
 
 
 /**
- * At which point should lap and desk breakpoints kick in? Based on these
- * numbers, csswizardry grids works out all other breakpoints for you.
+ * Define breakpoints in a list of lists. The first value is the prefix that
+ * shall be used for your classes, the second value is the media query that the
+ * breakpoint shall apply to.
  */
-$lap-start:             481px;
-$desk-start:            1024px;
+$breakpoints: (
+    'palm' '(max-width: 480px)',
+    'lap' '(min-width: 481px) and (max-width: 1023px)',
+    'portable' '(max-width: 1023px)',
+    'desk' '(min-width: 1024px)'
+);
 
+
+/**
+ * Define responsive breakpoints that should have each type of helper.
+ *
+ * Push shall only be used if $push and $responsive have been set to true.
+ * Pull shall only be used if $pull and $responsive have been set to true.
+ */
+$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk');
+$breakpoint-has-push: ('palm', 'lap', 'portable', 'desk');
+$breakpoint-has-pull: ('palm', 'lap', 'portable', 'desk');
 
 /**
  * Do not edit the following variables.
@@ -123,6 +130,39 @@ $class-type:            unquote(".");
 
 @if $use-silent-classes == true{
     $class-type: unquote("%");
+}
+
+
+
+
+
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+
+
+/**
+ * Enclose a block of code with a media query as named in $breakpoints.
+ */
+@mixin grid-media-query($media-query) {
+    $breakpoint-found: false;
+
+    @each $breakpoint in $breakpoints {
+        $name: nth($breakpoint, 1);
+        $declaration: nth($breakpoint, 2);
+
+        @if $media-query == $name and $declaration {
+            $breakpoint-found: true;
+
+            @media only screen and #{$declaration} {
+                @content;
+            }
+        }
+    }
+
+    @if $breakpoint-found == false {
+        @warn "Breakpoint '#{$media-query}' does not exist"
+    }
 }
 
 
@@ -201,11 +241,6 @@ $class-type:            unquote(".");
 /*------------------------------------*\
     $WIDTHS
 \*------------------------------------*/
-/**
- * These next bits get worked out for you.
- */
-$palm-end:              $lap-start - 1px;
-$lap-end:               $desk-start - 1px;
 
 
 /**
@@ -316,21 +351,10 @@ $lap-end:               $desk-start - 1px;
  */
 @if $responsive == true{
 
-
-    @media only screen and (max-width:$palm-end){
-        @include device-type("palm-");
-    }
-
-    @media only screen and (min-width:$lap-start) and (max-width:$lap-end){
-        @include device-type("lap-");
-    }
-
-    @media only screen and (max-width:$lap-end){
-        @include device-type("portable-");
-    }
-
-    @media only screen and (min-width:$desk-start){
-        @include device-type("desk-");
+    @each $name in $breakpoint-has-widths {
+        @include grid-media-query($name) {
+           @include device-type('#{$name}-');
+        }
     }
 
 
@@ -436,11 +460,7 @@ $lap-end:               $desk-start - 1px;
     #{$class-type}push--#{$namespace}eleven-twelfths     { left:91.666%; }
 }
 
-@if $push == true or
-    $palm-push == true or
-    $lap-push == true or
-    $portable-push == true or
-    $desk-push == true{
+@if $push == true {
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
@@ -448,42 +468,17 @@ $lap-end:               $desk-start - 1px;
     [class*="push--"]{ position:relative; }
 
 
-    @if $push == true{
-        @include push-setup();
-    }
+    @include push-setup();
 
 
-    @if $palm-push == true{
-
-        @media only screen and (max-width:$palm-end){
-            @include push-setup("palm-");
+    @if $responsive == true{
+        @each $name in $breakpoint-has-push {
+            @include grid-media-query($name) {
+               @include  push-setup('#{$name}-');
+            }
         }
-
     }
 
-    @if $lap-push == true{
-
-        @media only screen and (min-width:$lap-start) and (max-width:$lap-end){
-            @include push-setup("lap-");
-        }
-
-    }
-
-    @if $portable-push == true{
-
-        @media only screen and (max-width:$lap-end){
-            @include push-setup("portable-");
-        }
-
-    }
-
-    @if $desk-push == true{
-
-        @media only screen and (min-width:$desk-start){
-            @include push-setup("desk-");
-        }
-
-    }
 
 }
 
@@ -587,11 +582,7 @@ $lap-end:               $desk-start - 1px;
     #{$class-type}pull--#{$namespace}eleven-twelfths     { right:91.666%; }
 }
 
-@if $pull == true or
-    $palm-pull == true or
-    $lap-pull == true or
-    $portable-pull == true or
-    $desk-pull == true{
+@if $pull == true{
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
@@ -599,42 +590,17 @@ $lap-end:               $desk-start - 1px;
     [class*="pull--"]{ position:relative; }
 
 
-    @if $pull == true{
-        @include pull-setup();
-    }
+    @include pull-setup();
 
 
-    @if $palm-pull == true{
-
-        @media only screen and (max-width:$palm-end){
-            @include pull-setup("palm-");
+    @if $responsive == true{
+        @each $name in $breakpoint-has-pull {
+            @include grid-media-query($name) {
+               @include  pull-setup('#{$name}-');
+            }
         }
-
     }
 
-    @if $lap-pull == true{
-
-        @media only screen and (min-width:$lap-start) and (max-width:$lap-end){
-            @include pull-setup("lap-");
-        }
-
-    }
-
-    @if $portable-pull == true{
-
-        @media only screen and (max-width:$lap-end){
-            @include pull-setup("portable-");
-        }
-
-    }
-
-    @if $desk-pull == true{
-
-        @media only screen and (min-width:$desk-start){
-            @include pull-setup("desk-");
-        }
-
-    }
 
 }
 
