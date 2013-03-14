@@ -6,3 +6,4 @@
 * **1.4**       Add `.grid--rev` option to reverse grids’ display order
 * **1.5**       Add gutterless grids option
 * **1.5.1**     Use Sass’ nesting to keep things a tad DRYer
+* **1.6**       Add push and pull classes

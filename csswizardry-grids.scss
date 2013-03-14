@@ -3,9 +3,60 @@
 \*------------------------------------*/
 /**
  * CONTENTS
+ * INTRODUCTION.........How the grid system works.
  * VARIABLES............Your settings.
  * GRID SETUP...........Build the grid structure.
  * WIDTHS...............Build our responsive widths around our breakpoints.
+ * PUSH.................Push classes
+ * PULL.................Pull classes
+ */
+
+
+
+
+
+/*------------------------------------*\
+    $INTRODUCTION
+\*------------------------------------*/
+/**
+ * csswizardry grids provides you with widths to suit a number of breakpoints
+ * designed around devices of a size you specify. Out of the box, csswizardry
+ * grids caters to the following types of device:
+ *
+ * palm     --  palm-based devices, like phones and small tablets
+ * lap      --  lap-based devices, like iPads or laptops
+ * portable --  all of the above
+ * desk     --  stationary devices, like desktop computers
+ * regular  --  any/all types of device
+ *
+ * These namespaces are then used in the library to give you the ability to
+ * manipulate your layouts based around them, for example:
+ *
+   <div class="grid__item  one-whole  lap-one-half  desk-one-third">
+ *
+ * This would give you a grid item which is 100% width unless it is on a lap
+ * device, at which point it become 50% wide, or it is on a desktop device, at
+ * which point it becomes 33.333% width.
+ *
+ * csswizardry grids also has push and pull classes which allow you to nudge
+ * grid items left and right by a defined amount. These follow the same naming
+ * convention as above, but are prepended by either `push--` or `pull--`, for
+ * example:
+ *
+   `class="grid__item  one-half  push--one-half"`
+ *
+ * This would give you a grid item which is 50% width and pushed over to the
+ * right by 50%.
+ *
+ * All classes in csswizardry grids follow this patten, so you should fairly
+ * quickly be able to piece together any combinations you can imagine, for
+ * example:
+ *
+   `class="grid__item  one-whole  lap-one-half  desk-one-third  push--desk-one-third"`
+ *
+   `class="grid__item  one-quarter  palm-one-half  push--palm-one-half"`
+ *
+   `class="grid__item  palm-one-third  desk-five-twelfths"`
  */
 
 
@@ -42,7 +93,24 @@ $use-silent-classes:    false;
 
 
 /**
- * At which point should lap and desk breakpoints kick in?
+ * Would you like push and pull classes enabled?
+ */
+$push:              false;
+$palm-push:         false;
+$lap-push:          false;
+$portable-push:     false;
+$desk-push:         false;
+
+$pull:              false;
+$palm-pull:         false;
+$lap-pull:          false;
+$portable-pull:     false;
+$desk-pull:         false;
+
+
+/**
+ * At which point should lap and desk breakpoints kick in? Based on these
+ * numbers, csswizardry grids works out all other breakpoints for you.
  */
 $lap-start:             481px;
 $desk-start:            1024px;
@@ -98,8 +166,8 @@ $class-type:            unquote(".");
 
 
 /**
- * Reversed grids allow you to structure your source different to how your
- * rendered layout will appear.
+ * Reversed grids allow you to structure your source in the opposite order to
+ * how your rendered layout will appear.
  */
 #{$class-type}grid--rev{
     @extend #{$class-type}grid;
@@ -141,7 +209,7 @@ $lap-end:               $desk-start - 1px;
 
 
 /**
- * Create our widths, prefixed by the specified namespace.
+ * Create our width classes, prefixed by the specified namespace.
  */
 @mixin device-type($namespace:""){
 
@@ -243,12 +311,12 @@ $lap-end:               $desk-start - 1px;
 @include device-type();
 
 
+/**
+ * Our responsive classes, if we have enabled them.
+ */
 @if $responsive == true{
 
 
-    /**
-     * Our breakpoint specific widths classes.
-     */
     @media only screen and (max-width:$palm-end){
         @include device-type("palm-");
     }
@@ -267,3 +335,306 @@ $lap-end:               $desk-start - 1px;
 
 
 }
+
+
+
+
+
+/*------------------------------------*\
+    $PUSH
+\*------------------------------------*/
+/**
+ * Push classes, to move grid items over to the right by certain amounts.
+ */
+@mixin push-setup($namespace: ""){
+
+    /**
+     * Whole
+     */
+    #{$class-type}push--#{$namespace}one-whole           { left:100%; }
+
+
+    /**
+     * Halves
+     */
+    #{$class-type}push--#{$namespace}one-half            { left:50%; }
+
+
+    /**
+     * Thirds
+     */
+    #{$class-type}push--#{$namespace}one-third           { left:33.333%; }
+    #{$class-type}push--#{$namespace}two-thirds          { left:66.666%; }
+
+
+    /**
+     * Quarters
+     */
+    #{$class-type}push--#{$namespace}one-quarter         { left:25%; }
+    #{$class-type}push--#{$namespace}two-quarters        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}three-quarters      { left:75%; }
+
+
+    /**
+     * Fifths
+     */
+    #{$class-type}push--#{$namespace}one-fifth           { left:20%; }
+    #{$class-type}push--#{$namespace}two-fifths          { left:40%; }
+    #{$class-type}push--#{$namespace}three-fifths        { left:60%; }
+    #{$class-type}push--#{$namespace}four-fifths         { left:80%; }
+
+
+    /**
+     * Sixths
+     */
+    #{$class-type}push--#{$namespace}one-sixth           { left:16.666%; }
+    #{$class-type}push--#{$namespace}two-sixths          { @extend #{$class-type}push--#{$namespace}one-third; }
+    #{$class-type}push--#{$namespace}three-sixths        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}four-sixths         { @extend #{$class-type}push--#{$namespace}two-thirds; }
+    #{$class-type}push--#{$namespace}five-sixths         { left:83.333%; }
+
+
+    /**
+     * Eighths
+     */
+    #{$class-type}push--#{$namespace}one-eighth          { left:12.5%; }
+    #{$class-type}push--#{$namespace}two-eighths         { @extend #{$class-type}push--#{$namespace}one-quarter; }
+    #{$class-type}push--#{$namespace}three-eighths       { left:37.5%; }
+    #{$class-type}push--#{$namespace}four-eighths        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}five-eighths        { left:62.5%; }
+    #{$class-type}push--#{$namespace}six-eighths         { @extend #{$class-type}push--#{$namespace}three-quarters; }
+    #{$class-type}push--#{$namespace}seven-eighths       { left:87.5%; }
+
+
+    /**
+     * Tenths
+     */
+    #{$class-type}push--#{$namespace}one-tenth           { left:10%; }
+    #{$class-type}push--#{$namespace}two-tenths          { @extend #{$class-type}push--#{$namespace}one-fifth; }
+    #{$class-type}push--#{$namespace}three-tenths        { left:30%; }
+    #{$class-type}push--#{$namespace}four-tenths         { @extend #{$class-type}push--#{$namespace}two-fifths; }
+    #{$class-type}push--#{$namespace}five-tenths         { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}six-tenths          { @extend #{$class-type}push--#{$namespace}three-fifths; }
+    #{$class-type}push--#{$namespace}seven-tenths        { left:70%; }
+    #{$class-type}push--#{$namespace}eight-tenths        { @extend #{$class-type}push--#{$namespace}four-fifths; }
+    #{$class-type}push--#{$namespace}nine-tenths         { left:90%; }
+
+
+    /**
+     * Twelfths
+     */
+    #{$class-type}push--#{$namespace}one-twelfth         { left:8.333%; }
+    #{$class-type}push--#{$namespace}two-twelfths        { @extend #{$class-type}push--#{$namespace}one-sixth; }
+    #{$class-type}push--#{$namespace}three-twelfths      { @extend #{$class-type}push--#{$namespace}one-quarter; }
+    #{$class-type}push--#{$namespace}four-twelfths       { @extend #{$class-type}push--#{$namespace}one-third; }
+    #{$class-type}push--#{$namespace}five-twelfths       { left:41.666% }
+    #{$class-type}push--#{$namespace}six-twelfths        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}seven-twelfths      { left:58.333%; }
+    #{$class-type}push--#{$namespace}eight-twelfths      { @extend #{$class-type}push--#{$namespace}two-thirds; }
+    #{$class-type}push--#{$namespace}nine-twelfths       { @extend #{$class-type}push--#{$namespace}three-quarters; }
+    #{$class-type}push--#{$namespace}ten-twelfths        { @extend #{$class-type}push--#{$namespace}five-sixths; }
+    #{$class-type}push--#{$namespace}eleven-twelfths     { left:91.666%; }
+}
+
+@if $push == true or
+    $palm-push == true or
+    $lap-push == true or
+    $portable-push == true or
+    $desk-push == true{
+
+    /**
+     * Not a particularly great selector, but the DRYest way to do things.
+     */
+    [class*="push--"]{ position:relative; }
+
+
+    @if $push == true{
+        @include push-setup();
+    }
+
+
+    @if $palm-push == true{
+
+        @media only screen and (max-width:$palm-end){
+            @include push-setup("palm-");
+        }
+
+    }
+
+    @if $lap-push == true{
+
+        @media only screen and (min-width:$lap-start) and (max-width:$lap-end){
+            @include push-setup("lap-");
+        }
+
+    }
+
+    @if $portable-push == true{
+
+        @media only screen and (max-width:$lap-end){
+            @include push-setup("portable-");
+        }
+
+    }
+
+    @if $desk-push == true{
+
+        @media only screen and (min-width:$desk-start){
+            @include push-setup("desk-");
+        }
+
+    }
+
+}
+
+
+
+
+
+/*------------------------------------*\
+    $PULL
+\*------------------------------------*/
+/**
+ * Pull classes, to move grid items back to the left by certain amounts.
+ */
+@mixin pull-setup($namespace: ""){
+
+    /**
+     * Whole
+     */
+    #{$class-type}pull--#{$namespace}one-whole           { right:100%; }
+
+
+    /**
+     * Halves
+     */
+    #{$class-type}pull--#{$namespace}one-half            { right:50%; }
+
+
+    /**
+     * Thirds
+     */
+    #{$class-type}pull--#{$namespace}one-third           { right:33.333%; }
+    #{$class-type}pull--#{$namespace}two-thirds          { right:66.666%; }
+
+
+    /**
+     * Quarters
+     */
+    #{$class-type}pull--#{$namespace}one-quarter         { right:25%; }
+    #{$class-type}pull--#{$namespace}two-quarters        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}three-quarters      { right:75%; }
+
+
+    /**
+     * Fifths
+     */
+    #{$class-type}pull--#{$namespace}one-fifth           { right:20%; }
+    #{$class-type}pull--#{$namespace}two-fifths          { right:40%; }
+    #{$class-type}pull--#{$namespace}three-fifths        { right:60%; }
+    #{$class-type}pull--#{$namespace}four-fifths         { right:80%; }
+
+
+    /**
+     * Sixths
+     */
+    #{$class-type}pull--#{$namespace}one-sixth           { right:16.666%; }
+    #{$class-type}pull--#{$namespace}two-sixths          { @extend #{$class-type}pull--#{$namespace}one-third; }
+    #{$class-type}pull--#{$namespace}three-sixths        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}four-sixths         { @extend #{$class-type}pull--#{$namespace}two-thirds; }
+    #{$class-type}pull--#{$namespace}five-sixths         { right:83.333%; }
+
+
+    /**
+     * Eighths
+     */
+    #{$class-type}pull--#{$namespace}one-eighth          { right:12.5%; }
+    #{$class-type}pull--#{$namespace}two-eighths         { @extend #{$class-type}pull--#{$namespace}one-quarter; }
+    #{$class-type}pull--#{$namespace}three-eighths       { right:37.5%; }
+    #{$class-type}pull--#{$namespace}four-eighths        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}five-eighths        { right:62.5%; }
+    #{$class-type}pull--#{$namespace}six-eighths         { @extend #{$class-type}pull--#{$namespace}three-quarters; }
+    #{$class-type}pull--#{$namespace}seven-eighths       { right:87.5%; }
+
+
+    /**
+     * Tenths
+     */
+    #{$class-type}pull--#{$namespace}one-tenth           { right:10%; }
+    #{$class-type}pull--#{$namespace}two-tenths          { @extend #{$class-type}pull--#{$namespace}one-fifth; }
+    #{$class-type}pull--#{$namespace}three-tenths        { right:30%; }
+    #{$class-type}pull--#{$namespace}four-tenths         { @extend #{$class-type}pull--#{$namespace}two-fifths; }
+    #{$class-type}pull--#{$namespace}five-tenths         { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}six-tenths          { @extend #{$class-type}pull--#{$namespace}three-fifths; }
+    #{$class-type}pull--#{$namespace}seven-tenths        { right:70%; }
+    #{$class-type}pull--#{$namespace}eight-tenths        { @extend #{$class-type}pull--#{$namespace}four-fifths; }
+    #{$class-type}pull--#{$namespace}nine-tenths         { right:90%; }
+
+
+    /**
+     * Twelfths
+     */
+    #{$class-type}pull--#{$namespace}one-twelfth         { right:8.333%; }
+    #{$class-type}pull--#{$namespace}two-twelfths        { @extend #{$class-type}pull--#{$namespace}one-sixth; }
+    #{$class-type}pull--#{$namespace}three-twelfths      { @extend #{$class-type}pull--#{$namespace}one-quarter; }
+    #{$class-type}pull--#{$namespace}four-twelfths       { @extend #{$class-type}pull--#{$namespace}one-third; }
+    #{$class-type}pull--#{$namespace}five-twelfths       { right:41.666% }
+    #{$class-type}pull--#{$namespace}six-twelfths        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}seven-twelfths      { right:58.333%; }
+    #{$class-type}pull--#{$namespace}eight-twelfths      { @extend #{$class-type}pull--#{$namespace}two-thirds; }
+    #{$class-type}pull--#{$namespace}nine-twelfths       { @extend #{$class-type}pull--#{$namespace}three-quarters; }
+    #{$class-type}pull--#{$namespace}ten-twelfths        { @extend #{$class-type}pull--#{$namespace}five-sixths; }
+    #{$class-type}pull--#{$namespace}eleven-twelfths     { right:91.666%; }
+}
+
+@if $pull == true or
+    $palm-pull == true or
+    $lap-pull == true or
+    $portable-pull == true or
+    $desk-pull == true{
+
+    /**
+     * Not a particularly great selector, but the DRYest way to do things.
+     */
+    [class*="pull--"]{ position:relative; }
+
+
+    @if $pull == true{
+        @include pull-setup();
+    }
+
+
+    @if $palm-pull == true{
+
+        @media only screen and (max-width:$palm-end){
+            @include pull-setup("palm-");
+        }
+
+    }
+
+    @if $lap-pull == true{
+
+        @media only screen and (min-width:$lap-start) and (max-width:$lap-end){
+            @include pull-setup("lap-");
+        }
+
+    }
+
+    @if $portable-pull == true{
+
+        @media only screen and (max-width:$lap-end){
+            @include pull-setup("portable-");
+        }
+
+    }
+
+    @if $desk-pull == true{
+
+        @media only screen and (min-width:$desk-start){
+            @include pull-setup("desk-");
+        }
+
+    }
+
+}
+
