@@ -105,12 +105,12 @@ $class-type:            unquote(".");
     @extend #{$class-type}grid;
     direction:rtl;
     text-align:right;
-}
 
-    #{$class-type}grid--rev > #{$class-type}grid__item{
+    > #{$class-type}grid__item{
         direction:ltr;
         text-align:left;
     }
+}
 
 
 /**
@@ -119,11 +119,11 @@ $class-type:            unquote(".");
 #{$class-type}grid--full{
     @extend #{$class-type}grid;
     margin-left:0;
-}
 
-    #{$class-type}grid--full > #{$class-type}grid__item{
+    > #{$class-type}grid__item{
         padding-left:0;
     }
+}
 
 
 
