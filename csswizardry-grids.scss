@@ -8,8 +8,8 @@
  * MIXINS...............Common mixins.
  * GRID SETUP...........Build the grid structure.
  * WIDTHS...............Build our responsive widths around our breakpoints.
- * PUSH.................Push classes
- * PULL.................Pull classes
+ * PUSH.................Push classes.
+ * PULL.................Pull classes.
  */
 
 
@@ -120,8 +120,9 @@ $breakpoints: (
  * Pull shall only be used if $pull and $responsive have been set to true.
  */
 $breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk');
-$breakpoint-has-push: ('palm', 'lap', 'portable', 'desk');
-$breakpoint-has-pull: ('palm', 'lap', 'portable', 'desk');
+$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk');
+$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk');
+
 
 /**
  * Do not edit the following variables.
@@ -142,26 +143,26 @@ $class-type:            unquote(".");
 
 
 /**
- * Enclose a block of code with a media query as named in $breakpoints.
+ * Enclose a block of code with a media query as named in `$breakpoints`.
  */
-@mixin grid-media-query($media-query) {
+@mixin grid-media-query($media-query){
     $breakpoint-found: false;
 
-    @each $breakpoint in $breakpoints {
+    @each $breakpoint in $breakpoints{
         $name: nth($breakpoint, 1);
         $declaration: nth($breakpoint, 2);
 
-        @if $media-query == $name and $declaration {
+        @if $media-query == $name and $declaration{
             $breakpoint-found: true;
 
-            @media only screen and #{$declaration} {
+            @media only screen and #{$declaration}{
                 @content;
             }
         }
     }
 
-    @if $breakpoint-found == false {
-        @warn "Breakpoint '#{$media-query}' does not exist"
+    @if $breakpoint-found == false{
+        @warn "Breakpoint ‘#{$media-query}’ does not exist"
     }
 }
 
@@ -241,8 +242,6 @@ $class-type:            unquote(".");
 /*------------------------------------*\
     $WIDTHS
 \*------------------------------------*/
-
-
 /**
  * Create our width classes, prefixed by the specified namespace.
  */
