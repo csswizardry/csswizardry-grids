@@ -5,7 +5,7 @@
  * CONTENTS
  * INTRODUCTION.........How the grid system works.
  * VARIABLES............Your settings.
- * MIXINS...............Common mixins.
+ * MIXINS...............Library mixins.
  * GRID SETUP...........Build the grid structure.
  * WIDTHS...............Build our responsive widths around our breakpoints.
  * PUSH.................Push classes.
@@ -140,8 +140,6 @@ $class-type:            unquote(".");
 /*------------------------------------*\
     $MIXINS
 \*------------------------------------*/
-
-
 /**
  * Enclose a block of code with a media query as named in `$breakpoints`.
  */
