@@ -69,14 +69,14 @@
 \*------------------------------------*/
 /**
  * If you are building a non-responsive site but would still like to use
- * csswizardry-grids, set this to false:
+ * csswizardry-grids, set this to ‘false’:
  */
 $responsive:            true;
 
 
 /**
- * Is this build mobile first? Setting to true means that all grids will be 100%
- * width if you do not apply a more specific class to them.
+ * Is this build mobile first? Setting to ‘true’ means that all grids will be
+ * 100% width if you do not apply a more specific class to them.
  */
 $mobile-first:          true;
 
@@ -101,9 +101,9 @@ $pull:                  false;
 
 
 /**
- * Define breakpoints in a list of lists. The first value is the prefix that
- * shall be used for your classes, the second value is the media query that the
- * breakpoint shall apply to.
+ * Define your breakpoints. The first value is the prefix that shall be used for
+ * your classes (e.g. `.palm-one-half`), the second value is the media query
+ * that the breakpoint fires at.
  */
 $breakpoints: (
     'palm' '(max-width: 480px)',
@@ -114,10 +114,14 @@ $breakpoints: (
 
 
 /**
- * Define responsive breakpoints that should have each type of helper.
+ * Define which namespaced breakpoints you would like to generate for each of
+ * widths, push and pull. This is handy if you only need pull on, say, desk, or
+ * you only need a new width breakpoint at mobile sizes. It allows you to only
+ * compile as much CSS as you need. All are turned on by default, but you can
+ * add and remove breakpoints at will.
  *
- * Push shall only be used if $push and $responsive have been set to true.
- * Pull shall only be used if $pull and $responsive have been set to true.
+ * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
+ * have been set to ‘true’.
  */
 $breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk');
 $breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk');
@@ -125,12 +129,13 @@ $breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk');
 
 
 /**
- * Do not edit the following variables.
+ * You do not need to edit anything from this line onward; csswizardry-grids is
+ * good to go. Happy griddin’!
  */
 $class-type:            unquote(".");
 
 @if $use-silent-classes == true{
-    $class-type: unquote("%");
+    $class-type:        unquote("%");
 }
 
 
@@ -141,6 +146,9 @@ $class-type:            unquote(".");
     $MIXINS
 \*------------------------------------*/
 /**
+ * These mixins are for the library to use only, you should not need to modify
+ * them at all.
+ *
  * Enclose a block of code with a media query as named in `$breakpoints`.
  */
 @mixin grid-media-query($media-query){
