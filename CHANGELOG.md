@@ -8,3 +8,4 @@
 * **1.5.1**     Use Sass’ nesting to keep things a tad DRYer
 * **1.6**       Add push and pull classes
 * **1.7**       Ability to define custom breakpoints
+* **1.7.1**     Add `!default` flags to library variables
