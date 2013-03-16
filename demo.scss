@@ -52,6 +52,18 @@ a{
     }
 }
 
+.grid__item{
+    -webkit-transition:0.2s;
+       -moz-transition:0.2s;
+            transition:0.2s;
+}
+
+.demo-block{
+    background-color:$color;
+    color:#fff;
+    padding:$gutter;
+}
+
 .page{
     @extend .grid--rev;
 }
@@ -68,14 +80,12 @@ a{
         @extend .lap-three-tenths;
     }
 
-.grid__item{
-    -webkit-transition:0.2s;
-       -moz-transition:0.2s;
-            transition:0.2s;
+.footer{
+    @extend .grid--full;
 }
 
-.demo-block{
-    background-color:$color;
-    color:#fff;
-    padding:$gutter;
-}
+    .footer__item{
+        @extend .grid__item;
+        @extend .lap-one-half;
+        @extend .desk-one-quarter;
+    }

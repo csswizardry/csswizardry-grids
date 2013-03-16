@@ -114,7 +114,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.grid, .grid--rev, .page, .grid--full {
+.grid, .grid--rev, .page, .grid--full, .footer {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -132,7 +132,7 @@
  * 4. Full-width unless told to behave otherwise.
  * 5. Required to combine fluid widths and fixed gutters.
  */
-.grid__item, .content, .sub-content {
+.grid__item, .content, .sub-content, .footer__item {
   display: inline-block;
   /* [1] */
   padding-left: 18px;
@@ -157,7 +157,7 @@
   direction: rtl;
   text-align: right;
 }
-.grid--rev > .grid__item, .page > .grid__item, .grid--rev > .content, .page > .content, .grid--rev > .sub-content, .page > .sub-content {
+.grid--rev > .grid__item, .page > .grid__item, .grid--rev > .content, .page > .content, .grid--rev > .sub-content, .page > .sub-content, .grid--rev > .footer__item, .page > .footer__item {
   direction: ltr;
   text-align: left;
 }
@@ -165,10 +165,10 @@
 /**
  * Gutterless grids have all the properties of regular grids, minus any spacing.
  */
-.grid--full {
+.grid--full, .footer {
   margin-left: 0;
 }
-.grid--full > .grid__item, .grid--full > .content, .grid--full > .sub-content {
+.grid--full > .grid__item, .footer > .grid__item, .grid--full > .content, .footer > .content, .grid--full > .sub-content, .footer > .sub-content, .grid--full > .footer__item, .footer > .footer__item {
   padding-left: 0;
 }
 
@@ -442,7 +442,7 @@
   /**
    * Halves
    */
-  .lap-one-half, .lap-two-quarters, .lap-three-sixths, .lap-four-eighths, .lap-five-tenths, .lap-six-twelfths {
+  .lap-one-half, .lap-two-quarters, .lap-three-sixths, .lap-four-eighths, .lap-five-tenths, .lap-six-twelfths, .footer__item {
     width: 50%;
   }
 
@@ -708,7 +708,7 @@
   /**
    * Quarters
    */
-  .desk-one-quarter, .desk-two-eighths, .desk-three-twelfths {
+  .desk-one-quarter, .desk-two-eighths, .desk-three-twelfths, .footer__item {
     width: 25%;
   }
 
@@ -2115,7 +2115,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.grid__item, .content, .sub-content {
+.grid__item, .content, .sub-content, .footer__item {
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
   transition: 0.2s;
