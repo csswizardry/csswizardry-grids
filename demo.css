@@ -2106,6 +2106,15 @@ p {
   margin-bottom: 18px;
 }
 
+a {
+  color: #f43059;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 .grid__item, .content, .sub-content {
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;

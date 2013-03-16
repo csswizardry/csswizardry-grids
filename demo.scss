@@ -42,6 +42,16 @@ p{
     margin-bottom:$gutter;
 }
 
+a{
+    color:$color;
+    font-weight:bold;
+    text-decoration:none;
+
+    &:hover{
+        text-decoration:underline;
+    }
+}
+
 .page{
     @extend .grid--rev;
 }
