@@ -253,9 +253,11 @@ $class-type:            unquote(".");
 
 
 /**
- * Centered grids.
+ * Centered grids align grid items centrally without needing to use push or pull
+ * classes.
  */
 #{$class-type}grid--center{
+    @extend #{$class-type}grid;
     text-align:center;
 }
 
