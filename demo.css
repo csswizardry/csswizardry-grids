@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -170,6 +171,13 @@
 }
 .grid--full > .grid__item, .footer > .grid__item, .grid--full > .content, .footer > .content, .grid--full > .sub-content, .footer > .sub-content, .grid--full > .footer__item, .footer > .footer__item {
   padding-left: 0;
+}
+
+/**
+ * Centered grids.
+ */
+.grid--center {
+  text-align: center;
 }
 
 /*------------------------------------*\
