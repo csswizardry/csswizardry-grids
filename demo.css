@@ -115,7 +115,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.grid, .grid--rev, .page, .grid--full, .footer {
+.grid, .grid--rev, .page, .grid--full, .footer, .grid--center {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -174,7 +174,8 @@
 }
 
 /**
- * Centered grids.
+ * Centered grids align grid items centrally without needing to use push or pull
+ * classes.
  */
 .grid--center {
   text-align: center;
