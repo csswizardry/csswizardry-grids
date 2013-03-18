@@ -2124,12 +2124,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.grid__item, .content, .sub-content, .footer__item {
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  transition: 0.2s;
-}
-
 .demo-block {
   background-color: #f43059;
   color: #fff;
