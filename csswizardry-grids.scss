@@ -259,6 +259,10 @@ $class-type:            unquote(".");
 #{$class-type}grid--center{
     @extend #{$class-type}grid;
     text-align:center;
+
+    > #{$class-type}grid__item{
+        text-align:left;
+    }
 }
 
 
