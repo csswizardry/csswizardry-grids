@@ -66,11 +66,19 @@ like this:
 
 It’s as simple as that!
 
+---
+
 **Note the empty HTML comments.** These are to remove whitespace caused by using
 `inline-block`.  Prior to v1.1 this was tackled by using some
 [`[letter|word]-spacing` trickery](https://github.com/csswizardry/csswizardry-grids/blob/60a5075ac65282bb24fa5a5d5ed32a060ce2975f/csswizardry-grids.scss#L64-L65),
 however Chrome 25 introduced a change which meant this method now broke
 csswizardry-grids.
+
+If you’d rather not use HTML comments to remove the whitespace then you can set
+the `$use-markup-fix` variable to false; this invokes a CSS hack that _cannot_
+be guaranteed. Always take care to check things over if using this method.
+
+---
 
 ### Sass’ silent classes
 
@@ -145,6 +153,18 @@ csswizardry-grids this is as simple as:
 
      --><div class="grid__item  one-half">
             Look, ma! No gutter!
+        </div>
+
+    </div>
+
+### Centred grids
+
+You can centrally align your grids by simply using the `.grid--center` modifier:
+
+    <div class="grid--center">
+
+        <div class="grid__item  one-half">
+            I’m in the middle!
         </div>
 
     </div>
