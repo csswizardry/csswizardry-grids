@@ -13,3 +13,4 @@
 * **1.7.3**     DRY out silent relative positioning
 * **1.8**       Add grid centring class
 * **1.8.1**     Ensure `.grid--center` adopts `.grid` base styling.
+* **1.8.2**     Ensure `.grid__item`s in `.grid--center` have normal text-alignment restored
