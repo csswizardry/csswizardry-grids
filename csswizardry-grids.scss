@@ -101,6 +101,21 @@ $pull:                  false!default;
 
 
 /**
+ * Using `inline-block` means that the grid items need their whitespace removing
+ * in order for them to work correctly. Set the following to true if you are
+ * going to achieve this by manually removing/commenting out any whitespace in
+ * your HTML yourself.
+ *
+ * Setting this to false invokes a hack which cannot always be guaranteed,
+ * please see the following for more detail:
+ *
+ * github.com/csswizardry/csswizardry-grids/commit/744d4b23c9d2b77d605b5991e54a397df72e0688
+ * github.com/csswizardry/inuit.css/issues/170#issuecomment-14859371
+ */
+$use-markup-fix:        true!default;
+
+
+/**
  * Define your breakpoints. The first value is the prefix that shall be used for
  * your classes (e.g. `.palm-one-half`), the second value is the media query
  * that the breakpoint fires at.
@@ -200,6 +215,17 @@ $class-type:            unquote(".");
     margin:0;                       /* [2] */
     padding:0;                      /* [2] */
     margin-left:-$gutter;           /* [3] */
+    @if $use-markup-fix != true{
+        letter-spacing:-0.31em;
+    }
+}
+
+@if $use-markup-fix != true{
+    /* Opera hack */
+    .opera:-o-prefocus,
+    #{$class-type}grid{
+        word-spacing:-0.43em;
+    }
 }
 
 
@@ -220,6 +246,10 @@ $class-type:            unquote(".");
         -webkit-box-sizing:border-box;  /* [5] */
            -moz-box-sizing:border-box;  /* [5] */
                 box-sizing:border-box;  /* [5] */
+        @if $use-markup-fix != true{
+            letter-spacing:normal;
+            word-spacing:normal;
+        }
     }
 
 
