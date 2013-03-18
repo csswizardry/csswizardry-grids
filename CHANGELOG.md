@@ -11,3 +11,4 @@
 * **1.7.1**     Add `!default` flags to library variables
 * **1.7.2**     Fix push and pull when using silent classes
 * **1.7.3**     DRY out silent relative positioning
+* **1.8**       Add grid centring class
