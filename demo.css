@@ -180,6 +180,9 @@
 .grid--center {
   text-align: center;
 }
+.grid--center > .grid__item, .grid--center > .content, .grid--center > .sub-content, .grid--center > .footer__item {
+  text-align: left;
+}
 
 /*------------------------------------*\
     $WIDTHS
