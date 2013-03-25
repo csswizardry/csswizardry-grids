@@ -64,14 +64,14 @@ a{
 
     .content{
         @extend .grid__item;
-        @extend .desk-three-fifths;
-        @extend .lap-seven-tenths;
+        @extend .desk--three-fifths;
+        @extend .lap--seven-tenths;
     }
 
     .sub-content{
         @extend .grid__item;
-        @extend .desk-two-fifths;
-        @extend .lap-three-tenths;
+        @extend .desk--two-fifths;
+        @extend .lap--three-tenths;
     }
 
 .footer{
@@ -80,6 +80,6 @@ a{
 
     .footer__item{
         @extend .grid__item;
-        @extend .lap-one-half;
-        @extend .desk-one-quarter;
+        @extend .lap--one-half;
+        @extend .desk--one-quarter;
     }
