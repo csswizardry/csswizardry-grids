@@ -117,7 +117,7 @@ $use-markup-fix:        true!default;
 
 /**
  * Define your breakpoints. The first value is the prefix that shall be used for
- * your classes (e.g. `.palm-one-half`), the second value is the media query
+ * your classes (e.g. `.palm--one-half`), the second value is the media query
  * that the breakpoint fires at.
  */
 $breakpoints: (
