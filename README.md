@@ -54,11 +54,11 @@ like this:
 
     <div class="grid">
     
-        <div class="grid__item  lap-one-half  desk-two-thirds">
+        <div class="grid__item  lap--one-half  desk--two-thirds">
             ...
         </div><!--
     
-     --><div class="grid__item  lap-one-half  desk-one-third">
+     --><div class="grid__item  lap--one-half  desk--one-third">
             ...
         </div>
     
@@ -107,15 +107,15 @@ might look like this:
         .sub-content{
             @extend %grid__item;
             @extend %one-whole;
-            @extend %lap-one-half;
+            @extend %lap--one-half;
         }
     
         .content{
-            @extend %desk-two-thirds;
+            @extend %desk--two-thirds;
         }
     
         .sub-content{
-            @extend %desk-one-third;
+            @extend %desk--one-third;
         }
 
 ### Reversed grids

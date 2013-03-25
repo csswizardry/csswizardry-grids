@@ -15,3 +15,4 @@
 * **1.8.1**     Ensure `.grid--center` adopts `.grid` base styling.
 * **1.8.2**     Ensure `.grid__item`s in `.grid--center` have normal text-alignment restored
 * **1.9**       Allow users to use a non-markup fix for `inline-block` whitespace removal
+* **2.0.0**     Tighten up use of modifier (`--`) syntax.
