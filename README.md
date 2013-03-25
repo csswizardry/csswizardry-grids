@@ -47,6 +47,43 @@ Simply fill in/adjust the relevant variables.
 csswizardry-grids is incredibly simple to implement, its classes are all
 human-readable and follow the same pattern.
 
+### Patterns
+
+csswizardry-grids’ classes are based on [a modified BEM
+syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/).
+
+* `.grid` is a **B**lock
+* `.grid__item` is an **E**lement
+* `.grid--rev` is a **M**odifier
+
+Classes include your breakpoint namespaces (e.g. `.palm--one-half`,
+`.desk--two-thirds` and so on); your push and pull classes (`.push--one-third`,
+`.pull--desk--one-quarter` and so on); your regular classes (`.one-tenth`,
+`.three-quarters` etc).
+
+Knowing these patterns will allow you to create hundreds of different
+combinations. A few examples:
+
+    /**
+     * Sets an item to be one half across all breakpoints.
+     */
+    .one-half{}
+
+    /**
+     * Pushes an item one third of the way to the right across all breakpoints.
+     */
+    .push--one-third{}
+
+    /**
+     * Sets an item to be ten twelfths wide only at the desk breakpoint.
+     */
+    .desk--ten-twelthfs{}
+
+    /**
+     * Pulls an item one half of the way to the left only at the palm breakpoint.
+     */
+    .pull--palm--one-half{}
+
 ### Classes in markup
 
 If you are using traditional classes then an example, basic usage might look
@@ -54,11 +91,11 @@ like this:
 
     <div class="grid">
     
-        <div class="grid__item  lap-one-half  desk-two-thirds">
+        <div class="grid__item  lap--one-half  desk--two-thirds">
             ...
         </div><!--
     
-     --><div class="grid__item  lap-one-half  desk-one-third">
+     --><div class="grid__item  lap--one-half  desk--one-third">
             ...
         </div>
     
@@ -107,15 +144,15 @@ might look like this:
         .sub-content{
             @extend %grid__item;
             @extend %one-whole;
-            @extend %lap-one-half;
+            @extend %lap--one-half;
         }
     
         .content{
-            @extend %desk-two-thirds;
+            @extend %desk--two-thirds;
         }
     
         .sub-content{
-            @extend %desk-one-third;
+            @extend %desk--one-third;
         }
 
 ### Reversed grids

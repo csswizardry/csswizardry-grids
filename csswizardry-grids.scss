@@ -33,7 +33,7 @@
  * These namespaces are then used in the library to give you the ability to
  * manipulate your layouts based around them, for example:
  *
-   <div class="grid__item  one-whole  lap-one-half  desk-one-third">
+   <div class="grid__item  one-whole  lap--one-half  desk--one-third">
  *
  * This would give you a grid item which is 100% width unless it is on a lap
  * device, at which point it become 50% wide, or it is on a desktop device, at
@@ -53,11 +53,11 @@
  * quickly be able to piece together any combinations you can imagine, for
  * example:
  *
-   `class="grid__item  one-whole  lap-one-half  desk-one-third  push--desk-one-third"`
+   `class="grid__item  one-whole  lap--one-half  desk--one-third  push--desk--one-third"`
  *
-   `class="grid__item  one-quarter  palm-one-half  push--palm-one-half"`
+   `class="grid__item  one-quarter  palm--one-half  push--palm--one-half"`
  *
-   `class="grid__item  palm-one-third  desk-five-twelfths"`
+   `class="grid__item  palm--one-third  desk--five-twelfths"`
  */
 
 
@@ -117,7 +117,7 @@ $use-markup-fix:        true!default;
 
 /**
  * Define your breakpoints. The first value is the prefix that shall be used for
- * your classes (e.g. `.palm-one-half`), the second value is the media query
+ * your classes (e.g. `.palm--one-half`), the second value is the media query
  * that the breakpoint fires at.
  */
 $breakpoints: (
@@ -413,7 +413,7 @@ $class-type:            unquote(".");
 
     @each $name in $breakpoint-has-widths {
         @include grid-media-query($name) {
-           @include device-type('#{$name}-');
+           @include device-type('#{$name}--');
         }
     }
 
@@ -534,7 +534,7 @@ $class-type:            unquote(".");
     @if $responsive == true{
         @each $name in $breakpoint-has-push {
             @include grid-media-query($name) {
-               @include  push-setup('#{$name}-');
+               @include  push-setup('#{$name}--');
             }
         }
     }
@@ -656,7 +656,7 @@ $class-type:            unquote(".");
     @if $responsive == true{
         @each $name in $breakpoint-has-pull {
             @include grid-media-query($name) {
-               @include  pull-setup('#{$name}-');
+               @include  pull-setup('#{$name}--');
             }
         }
     }
