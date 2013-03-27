@@ -16,3 +16,4 @@
 * **1.8.2**     Ensure `.grid__item`s in `.grid--center` have normal text-alignment restored
 * **1.9**       Allow users to use a non-markup fix for `inline-block` whitespace removal
 * **2.0.0**     Tighten up use of modifier (`--`) syntax.
+* **2.1.0**     Make distinction between right-aligning and reversing grids, provide a way to do both.
