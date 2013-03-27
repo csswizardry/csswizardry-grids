@@ -155,7 +155,7 @@ might look like this:
             @extend %desk--one-third;
         }
 
-### Reversed grids
+### Reversed grids (`.grid--rev{}`)
 
 csswizardry-grids has the option to reverse a set of grids; this means that the
 order you write your source and the order it renders are total opposites, for
@@ -177,7 +177,7 @@ This is handy if you want to lay out your page a certain way visually but it
 would be advantageous to order the source differently, for example to aid
 accessibility (getting a screenreader to read more important content first).
 
-### Gutterless grids
+### Gutterless grids (`.grid--full{}`)
 
 It may be desirable at times to have no gutter between your grid items; with
 csswizardry-grids this is as simple as:
@@ -194,7 +194,23 @@ csswizardry-grids this is as simple as:
 
     </div>
 
-### Centred grids
+### Right-aligned grids (`.grid--right{}`)
+
+Keep grids in their correct order, but have them flush right instead of left:
+
+    <div class="grid--right">
+
+        <div class="grid__item  one-quarter">
+            I render first but start in the middle of the page.
+        </div><!--
+
+     --><div class="grid__item  one-quarter">
+            I render second and appear at the very right edge of the page.
+        </div>
+
+    </div>
+
+### Centred grids (`.grid--center{}`)
 
 You can centrally align your grids by simply using the `.grid--center` modifier:
 

@@ -260,7 +260,7 @@ $class-type:            unquote(".");
 #{$class-type}grid--rev{
     @extend #{$class-type}grid;
     direction:rtl;
-    text-align:right;
+    text-align:left;
 
     > #{$class-type}grid__item{
         direction:ltr;
@@ -278,6 +278,19 @@ $class-type:            unquote(".");
 
     > #{$class-type}grid__item{
         padding-left:0;
+    }
+}
+
+
+/**
+ * Align the entire grid to the right.
+ */
+#{$class-type}grid--right{
+    @extend #{$class-type}grid;
+    text-align:right;
+
+    > #{$class-type}grid__item{
+        text-align:left;
     }
 }
 
