@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -88,7 +89,7 @@
  */
 /**
  * Define your breakpoints. The first value is the prefix that shall be used for
- * your classes (e.g. `.palm-one-half`), the second value is the media query
+ * your classes (e.g. `.palm--one-half`), the second value is the media query
  * that the breakpoint fires at.
  */
 /**
@@ -126,7 +127,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.grid, .grid--rev, .page, .grid--full, .footer, .grid--center {
+.grid, .grid--rev, .page, .grid--full, .footer, .grid--right, .grid--center {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -167,7 +168,7 @@
  */
 .grid--rev, .page {
   direction: rtl;
-  text-align: right;
+  text-align: left;
 }
 .grid--rev > .grid__item, .page > .grid__item, .grid--rev > .content, .page > .content, .grid--rev > .sub-content, .page > .sub-content, .grid--rev > .footer__item, .page > .footer__item {
   direction: ltr;
@@ -182,6 +183,16 @@
 }
 .grid--full > .grid__item, .footer > .grid__item, .grid--full > .content, .footer > .content, .grid--full > .sub-content, .footer > .sub-content, .grid--full > .footer__item, .footer > .footer__item {
   padding-left: 0;
+}
+
+/**
+ * Align the entire grid to the right.
+ */
+.grid--right {
+  text-align: right;
+}
+.grid--right > .grid__item, .grid--right > .content, .grid--right > .sub-content, .grid--right > .footer__item {
+  text-align: left;
 }
 
 /**
