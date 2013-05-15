@@ -306,6 +306,25 @@ $class-type:            unquote(".");
 }
 
 
+/**
+ * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
+ * `.grid`.
+ */
+#{$class-type}grid--middle{
+
+    > #{$class-type}grid__item{
+        vertical-align:middle;
+    }
+}
+
+#{$class-type}grid--bottom{
+
+    > #{$class-type}grid__item{
+        vertical-align:bottom;
+    }
+}
+
+
 
 
 
