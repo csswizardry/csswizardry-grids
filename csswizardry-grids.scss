@@ -325,6 +325,29 @@ $class-type:            unquote(".");
 }
 
 
+/**
+ * Create grids with narrower gutters. Extends `.grid`.
+ */
+#{$class-type}grid--narrow{
+    margin-left:-($gutter / 2);
+
+    > #{$class-type}grid__item{
+        padding-left:$gutter / 2;
+    }
+}
+
+
+/**
+ * Create grids with wider gutters. Extends `.grid`.
+ */
+#{$class-type}grid--wide{
+    margin-left:-($gutter * 2);
+
+    > #{$class-type}grid__item{
+        padding-left:$gutter * 2;
+    }
+}
+
 
 
 
