@@ -127,7 +127,7 @@
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-.grid, .grid--rev, .page, .grid--full, .footer, .grid--right, .grid--center {
+.grid, .page, .footer {
   list-style: none;
   /* [1] */
   margin: 0;
@@ -164,7 +164,7 @@
 
 /**
  * Reversed grids allow you to structure your source in the opposite order to
- * how your rendered layout will appear.
+ * how your rendered layout will appear. Extends `.grid`.
  */
 .grid--rev, .page {
   direction: rtl;
@@ -177,6 +177,7 @@
 
 /**
  * Gutterless grids have all the properties of regular grids, minus any spacing.
+ * Extends `.grid`.
  */
 .grid--full, .footer {
   margin-left: 0;
@@ -186,7 +187,7 @@
 }
 
 /**
- * Align the entire grid to the right.
+ * Align the entire grid to the right. Extends `.grid`.
  */
 .grid--right {
   text-align: right;
@@ -197,13 +198,45 @@
 
 /**
  * Centered grids align grid items centrally without needing to use push or pull
- * classes.
+ * classes. Extends `.grid`.
  */
 .grid--center {
   text-align: center;
 }
 .grid--center > .grid__item, .grid--center > .content, .grid--center > .sub-content, .grid--center > .footer__item {
   text-align: left;
+}
+
+/**
+ * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
+ * `.grid`.
+ */
+.grid--middle > .grid__item, .grid--middle > .content, .grid--middle > .sub-content, .grid--middle > .footer__item {
+  vertical-align: middle;
+}
+
+.grid--bottom > .grid__item, .grid--bottom > .content, .grid--bottom > .sub-content, .grid--bottom > .footer__item {
+  vertical-align: bottom;
+}
+
+/**
+ * Create grids with narrower gutters. Extends `.grid`.
+ */
+.grid--narrow {
+  margin-left: -9px;
+}
+.grid--narrow > .grid__item, .grid--narrow > .content, .grid--narrow > .sub-content, .grid--narrow > .footer__item {
+  padding-left: 9px;
+}
+
+/**
+ * Create grids with wider gutters. Extends `.grid`.
+ */
+.grid--wide {
+  margin-left: -36px;
+}
+.grid--wide > .grid__item, .grid--wide > .content, .grid--wide > .sub-content, .grid--wide > .footer__item {
+  padding-left: 36px;
 }
 
 /*------------------------------------*\
