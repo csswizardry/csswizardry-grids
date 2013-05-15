@@ -312,7 +312,7 @@ $class-type:            unquote(".");
          * Create grids with normal width gutters.
          */
         #{$class-type}#{$namespace}grid--default-width{
-            margin-left:$gutter;
+            margin-left:-$gutter;
 
             > #{$class-type}grid__item{
                 padding-left:$gutter;
