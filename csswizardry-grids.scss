@@ -125,7 +125,7 @@ $breakpoints: (
     'lap' '(min-width: 481px) and (max-width: 1023px)',
     'portable' '(max-width: 1023px)',
     'desk' '(min-width: 1024px)'
-);
+)!default;
 
 
 /**
@@ -138,9 +138,9 @@ $breakpoints: (
  * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
  * have been set to ‘true’.
  */
-$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk');
-$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk');
-$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk');
+$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
 
 
 /**
