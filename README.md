@@ -161,7 +161,7 @@ csswizardry-grids has the option to reverse a set of grids; this means that the
 order you write your source and the order it renders are total opposites, for
 example:
 
-    <div class="grid--rev">
+    <div class="grid  grid--rev">
 
         <div class="main-content  grid__item  two-thirds">
             I appear first in the markup, but render second in the page.
@@ -182,7 +182,7 @@ accessibility (getting a screenreader to read more important content first).
 It may be desirable at times to have no gutter between your grid items; with
 csswizardry-grids this is as simple as:
 
-    <div class="grid--full">
+    <div class="grid  grid--full">
 
         <div class="grid__item  one-half">
             Look, ma! No gutter!
@@ -198,7 +198,7 @@ csswizardry-grids this is as simple as:
 
 Keep grids in their correct order, but have them flush right instead of left:
 
-    <div class="grid--right">
+    <div class="grid  grid--right">
 
         <div class="grid__item  one-quarter">
             I render first but start in the middle of the page.
@@ -214,7 +214,7 @@ Keep grids in their correct order, but have them flush right instead of left:
 
 You can centrally align your grids by simply using the `.grid--center` modifier:
 
-    <div class="grid--center">
+    <div class="grid  grid--center">
 
         <div class="grid__item  one-half">
             I’m in the middle!
