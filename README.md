@@ -222,6 +222,40 @@ You can centrally align your grids by simply using the `.grid--center` modifier:
 
     </div>
 
+### Vertically aligned grids (`.grid--[middle|bottom]{}`)
+
+You can vertically align your grids to each other by simply using the
+`.grid--[middle|bottom]` modifiers:
+
+    <div class="grid  grid--middle">
+
+        <div class="grid__item  one-half">
+            I’m in the middle!
+        </div>
+
+        <div class="grid__item  one-half">
+            I’m in the middle!
+        </div>
+
+    </div>
+
+### Different sized grids (`.grid--[narrow|wide]{}`)
+
+You can quickly alter the gutter size of your grids to half (`.grid--narrow`) or
+double (`.grid--wide`) by using the relevant modifiers.
+
+    <div class="grid  grid--narrow">
+
+        <div class="grid__item  one-half">
+            I’m a narrow-guttered grid.
+        </div>
+
+        <div class="grid__item  one-half">
+            I’m a narrow-guttered grid.
+        </div>
+
+    </div>
+
 ## Help and questions
 
 If you have any trouble setting csswizardry-grids up, or would like some help
