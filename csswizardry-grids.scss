@@ -88,6 +88,13 @@ $gutter:                24px!default;
 
 
 /**
+ * ‘.grid‘ classes already taken on a page? Use this setting to namespace the output
+ * classes. For example, set this to ‘foo-‘ to get ‘.foo-grid‘, ‘.foo-grid__item‘, etc.
+ */
+$namespace:    ""!default;
+
+
+/**
  * Would you like Sass’ silent classes, or regular CSS classes?
  */
 $use-silent-classes:    false!default;
@@ -147,7 +154,7 @@ $breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
  * You do not need to edit anything from this line onward; csswizardry-grids is
  * good to go. Happy griddin’!
  */
-$class-type:            unquote(".");
+$class-type:            unquote(".") + $namespace;
 
 @if $use-silent-classes == true{
     $class-type:        unquote("%");
