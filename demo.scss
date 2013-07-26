@@ -59,6 +59,7 @@ a{
 }
 
 .page{
+    @extend .grid;
     @extend .grid--rev;
 }
 
@@ -75,6 +76,7 @@ a{
     }
 
 .footer{
+    @extend .grid;
     @extend .grid--full;
 }
 
