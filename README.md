@@ -115,6 +115,10 @@ If you’d rather not use HTML comments to remove the whitespace then you can se
 the `$use-markup-fix` variable to false; this invokes a CSS hack that _cannot_
 be guaranteed. Always take care to check things over if using this method.
 
+If you need to use csswizardry-grids with a CMS, or data coming out of a loop,
+you will need to format your template something a little like this:
+[codepad.viper-7.com/MdpMjx](http://codepad.viper-7.com/MdpMjx)
+
 ---
 
 ### Sass’ silent classes
