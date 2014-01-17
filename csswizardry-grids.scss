@@ -148,18 +148,10 @@ $breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
  * good to go. Happy griddin’!
  */
  
-/*
- * Deprecated in future versions of SASS
-   $class-type:        unquote("%");
- */ 
-$class-type:            unquote(".")!global;
+$class-type:            unquote(".");
 
 @if $use-silent-classes == true{
-    /*
-     * Deprecated in future versions of SASS
-       $class-type:        unquote("%");
-     */ 
-     $class-type:        unquote("%")!global;
+     $class-type:        unquote("%");
 }
 
 
