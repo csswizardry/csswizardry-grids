@@ -71,33 +71,33 @@
  * If you are building a non-responsive site but would still like to use
  * csswizardry-grids, set this to ‘false’:
  */
-$csswizardry-grids-responsive:            true!default;
+$responsive:            true!default;
 
 
 /**
  * Is this build mobile first? Setting to ‘true’ means that all grids will be
  * 100% width if you do not apply a more specific class to them.
  */
-$csswizardry-grids-mobile-first:          true!default;
+$mobile-first:          true!default;
 
 
 /**
  * Set the spacing between your grid items.
  */
-$csswizardry-grids-gutter:                24px!default;
+$gutter:                24px!default;
 
 
 /**
  * Would you like Sass’ silent classes, or regular CSS classes?
  */
-$csswizardry-grids-use-silent-classes:    false!default;
+$use-silent-classes:    false!default;
 
 
 /**
  * Would you like push and pull classes enabled?
  */
-$csswizardry-grids-push:                  false!default;
-$csswizardry-grids-pull:                  false!default;
+$push:                  false!default;
+$pull:                  false!default;
 
 
 /**
@@ -112,7 +112,7 @@ $csswizardry-grids-pull:                  false!default;
  * github.com/csswizardry/csswizardry-grids/commit/744d4b23c9d2b77d605b5991e54a397df72e0688
  * github.com/csswizardry/inuit.css/issues/170#issuecomment-14859371
  */
-$csswizardry-grids-use-markup-fix:        true!default;
+$use-markup-fix:        true!default;
 
 
 /**
@@ -120,7 +120,7 @@ $csswizardry-grids-use-markup-fix:        true!default;
  * your classes (e.g. `.palm--one-half`), the second value is the media query
  * that the breakpoint fires at.
  */
-$csswizardry-grids-breakpoints: (
+$breakpoints: (
     'palm' '(max-width: 480px)',
     'lap' '(min-width: 481px) and (max-width: 1023px)',
     'portable' '(max-width: 1023px)',
@@ -135,26 +135,26 @@ $csswizardry-grids-breakpoints: (
  * compile as much CSS as you need. All are turned on by default, but you can
  * add and remove breakpoints at will.
  *
- * Push and pull shall only be used if `$csswizardry-grids-push` and/or `$csswizardry-grids-pull` and `$csswizardry-grids-responsive`
+ * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
  * have been set to ‘true’.
  */
-$csswizardry-grids-breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk')!default;
-$csswizardry-grids-breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk')!default;
-$csswizardry-grids-breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
 
 
 /**
  * You do not need to edit anything from this line onward; csswizardry-grids is
  * good to go. Happy griddin’!
  */
-$csswizardry-grids-class-type:            unquote(".");
+$class-type:            unquote(".");
 
-@if $csswizardry-grids-use-silent-classes == true{
+@if $use-silent-classes == true{
     /*
      * Deprecated in future versions of SASS
-       $csswizardry-grids-class-type:        unquote("%");
-     */
-     $csswizardry-grids-class-type:        unquote("%")!global;
+       $class-type:        unquote("%");
+     */ 
+     $class-type:        unquote("%")!global;
 }
 
 
@@ -168,26 +168,26 @@ $csswizardry-grids-class-type:            unquote(".");
  * These mixins are for the library to use only, you should not need to modify
  * them at all.
  *
- * Enclose a block of code with a media query as named in `$csswizardry-grids-breakpoints`.
+ * Enclose a block of code with a media query as named in `$breakpoints`.
  */
-@mixin grid-media-query($csswizardry-grids-media-query){
-    $csswizardry-grids-breakpoint-found: false;
+@mixin grid-media-query($media-query){
+    $breakpoint-found: false;
 
-    @each $csswizardry-grids-breakpoint in $csswizardry-grids-breakpoints{
-        $csswizardry-grids-name: nth($csswizardry-grids-breakpoint, 1);
-        $csswizardry-grids-declaration: nth($csswizardry-grids-breakpoint, 2);
+    @each $breakpoint in $breakpoints{
+        $name: nth($breakpoint, 1);
+        $declaration: nth($breakpoint, 2);
 
-        @if $csswizardry-grids-media-query == $csswizardry-grids-name and $csswizardry-grids-declaration{
-            $csswizardry-grids-breakpoint-found: true;
+        @if $media-query == $name and $declaration{
+            $breakpoint-found: true;
 
-            @media only screen and #{$csswizardry-grids-declaration}{
+            @media only screen and #{$declaration}{
                 @content;
             }
         }
     }
 
-    @if $csswizardry-grids-breakpoint-found == false{
-        @warn "Breakpoint ‘#{$csswizardry-grids-media-query}’ does not exist"
+    @if $breakpoint-found == false{
+        @warn "Breakpoint ‘#{$media-query}’ does not exist"
     }
 }
 
@@ -197,7 +197,7 @@ $csswizardry-grids-class-type:            unquote(".");
  * the `[class*="push--"]` and `[class*="pull--"]` selectors.
  */
 @mixin silent-relative(){
-    @if $csswizardry-grids-use-silent-classes == true{
+    @if $use-silent-classes == true{
         position:relative;
     }
 }
@@ -214,20 +214,20 @@ $csswizardry-grids-class-type:            unquote(".");
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-#{$csswizardry-grids-class-type}grid{
+#{$class-type}grid{
     list-style:none;                /* [1] */
     margin:0;                       /* [2] */
     padding:0;                      /* [2] */
-    margin-left:-$csswizardry-grids-gutter;           /* [3] */
-    @if $csswizardry-grids-use-markup-fix != true{
+    margin-left:-$gutter;           /* [3] */
+    @if $use-markup-fix != true{
         letter-spacing:-0.31em;
     }
 }
 
-@if $csswizardry-grids-use-markup-fix != true{
+@if $use-markup-fix != true{
     /* Opera hack */
     .opera:-o-prefocus,
-    #{$csswizardry-grids-class-type}grid{
+    #{$class-type}grid{
         word-spacing:-0.43em;
     }
 }
@@ -240,17 +240,17 @@ $csswizardry-grids-class-type:            unquote(".");
      * 4. Full-width unless told to behave otherwise.
      * 5. Required to combine fluid widths and fixed gutters.
      */
-    #{$csswizardry-grids-class-type}grid__item{
+    #{$class-type}grid__item{
         display:inline-block;           /* [1] */
-        padding-left:$csswizardry-grids-gutter;           /* [2] */
+        padding-left:$gutter;           /* [2] */
         vertical-align:top;             /* [3] */
-        @if $csswizardry-grids-mobile-first == true{
+        @if $mobile-first == true{
             width:100%;                 /* [4] */
         }
         -webkit-box-sizing:border-box;  /* [5] */
            -moz-box-sizing:border-box;  /* [5] */
                 box-sizing:border-box;  /* [5] */
-        @if $csswizardry-grids-use-markup-fix != true{
+        @if $use-markup-fix != true{
             letter-spacing:normal;
             word-spacing:normal;
         }
@@ -261,11 +261,11 @@ $csswizardry-grids-class-type:            unquote(".");
  * Reversed grids allow you to structure your source in the opposite order to
  * how your rendered layout will appear. Extends `.grid`.
  */
-#{$csswizardry-grids-class-type}grid--rev{
+#{$class-type}grid--rev{
     direction:rtl;
     text-align:left;
 
-    > #{$csswizardry-grids-class-type}grid__item{
+    > #{$class-type}grid__item{
         direction:ltr;
         text-align:left;
     }
@@ -276,10 +276,10 @@ $csswizardry-grids-class-type:            unquote(".");
  * Gutterless grids have all the properties of regular grids, minus any spacing.
  * Extends `.grid`.
  */
-#{$csswizardry-grids-class-type}grid--full{
+#{$class-type}grid--full{
     margin-left:0;
 
-    > #{$csswizardry-grids-class-type}grid__item{
+    > #{$class-type}grid__item{
         padding-left:0;
     }
 }
@@ -288,10 +288,10 @@ $csswizardry-grids-class-type:            unquote(".");
 /**
  * Align the entire grid to the right. Extends `.grid`.
  */
-#{$csswizardry-grids-class-type}grid--right{
+#{$class-type}grid--right{
     text-align:right;
 
-    > #{$csswizardry-grids-class-type}grid__item{
+    > #{$class-type}grid__item{
         text-align:left;
     }
 }
@@ -301,10 +301,10 @@ $csswizardry-grids-class-type:            unquote(".");
  * Centered grids align grid items centrally without needing to use push or pull
  * classes. Extends `.grid`.
  */
-#{$csswizardry-grids-class-type}grid--center{
+#{$class-type}grid--center{
     text-align:center;
 
-    > #{$csswizardry-grids-class-type}grid__item{
+    > #{$class-type}grid__item{
         text-align:left;
     }
 }
@@ -314,16 +314,16 @@ $csswizardry-grids-class-type:            unquote(".");
  * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
  * `.grid`.
  */
-#{$csswizardry-grids-class-type}grid--middle{
+#{$class-type}grid--middle{
 
-    > #{$csswizardry-grids-class-type}grid__item{
+    > #{$class-type}grid__item{
         vertical-align:middle;
     }
 }
 
-#{$csswizardry-grids-class-type}grid--bottom{
+#{$class-type}grid--bottom{
 
-    > #{$csswizardry-grids-class-type}grid__item{
+    > #{$class-type}grid__item{
         vertical-align:bottom;
     }
 }
@@ -332,11 +332,11 @@ $csswizardry-grids-class-type:            unquote(".");
 /**
  * Create grids with narrower gutters. Extends `.grid`.
  */
-#{$csswizardry-grids-class-type}grid--narrow{
-    margin-left:-($csswizardry-grids-gutter / 2);
+#{$class-type}grid--narrow{
+    margin-left:-($gutter / 2);
 
-    > #{$csswizardry-grids-class-type}grid__item{
-        padding-left:$csswizardry-grids-gutter / 2;
+    > #{$class-type}grid__item{
+        padding-left:$gutter / 2;
     }
 }
 
@@ -344,11 +344,11 @@ $csswizardry-grids-class-type:            unquote(".");
 /**
  * Create grids with wider gutters. Extends `.grid`.
  */
-#{$csswizardry-grids-class-type}grid--wide{
-    margin-left:-($csswizardry-grids-gutter * 2);
+#{$class-type}grid--wide{
+    margin-left:-($gutter * 2);
 
-    > #{$csswizardry-grids-class-type}grid__item{
-        padding-left:$csswizardry-grids-gutter * 2;
+    > #{$class-type}grid__item{
+        padding-left:$gutter * 2;
     }
 }
 
@@ -362,95 +362,95 @@ $csswizardry-grids-class-type:            unquote(".");
 /**
  * Create our width classes, prefixed by the specified namespace.
  */
-@mixin device-type($csswizardry-grids-namespace:""){
+@mixin device-type($namespace:""){
 
 
     /**
      * Whole
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-whole         { width:100%; }
+    #{$class-type}#{$namespace}one-whole         { width:100%; }
 
 
     /**
      * Halves
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-half          { width:50%; }
+    #{$class-type}#{$namespace}one-half          { width:50%; }
 
 
     /**
      * Thirds
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-third         { width:33.333%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-thirds        { width:66.666%; }
+    #{$class-type}#{$namespace}one-third         { width:33.333%; }
+    #{$class-type}#{$namespace}two-thirds        { width:66.666%; }
 
 
     /**
      * Quarters
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-quarter       { width:25%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-quarters      { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-quarters    { width:75%; }
+    #{$class-type}#{$namespace}one-quarter       { width:25%; }
+    #{$class-type}#{$namespace}two-quarters      { @extend #{$class-type}#{$namespace}one-half; }
+    #{$class-type}#{$namespace}three-quarters    { width:75%; }
 
 
     /**
      * Fifths
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-fifth         { width:20%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-fifths        { width:40%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-fifths      { width:60%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}four-fifths       { width:80%; }
+    #{$class-type}#{$namespace}one-fifth         { width:20%; }
+    #{$class-type}#{$namespace}two-fifths        { width:40%; }
+    #{$class-type}#{$namespace}three-fifths      { width:60%; }
+    #{$class-type}#{$namespace}four-fifths       { width:80%; }
 
 
     /**
      * Sixths
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-sixth         { width:16.666%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-sixths        { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-third; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-sixths      { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}four-sixths       { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-thirds; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}five-sixths       { width:83.333%; }
+    #{$class-type}#{$namespace}one-sixth         { width:16.666%; }
+    #{$class-type}#{$namespace}two-sixths        { @extend #{$class-type}#{$namespace}one-third; }
+    #{$class-type}#{$namespace}three-sixths      { @extend #{$class-type}#{$namespace}one-half; }
+    #{$class-type}#{$namespace}four-sixths       { @extend #{$class-type}#{$namespace}two-thirds; }
+    #{$class-type}#{$namespace}five-sixths       { width:83.333%; }
 
 
     /**
      * Eighths
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-eighth        { width:12.5%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-eighths       { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-quarter; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-eighths     { width:37.5%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}four-eighths      { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}five-eighths      { width:62.5%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}six-eighths       { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-quarters; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}seven-eighths     { width:87.5%; }
+    #{$class-type}#{$namespace}one-eighth        { width:12.5%; }
+    #{$class-type}#{$namespace}two-eighths       { @extend #{$class-type}#{$namespace}one-quarter; }
+    #{$class-type}#{$namespace}three-eighths     { width:37.5%; }
+    #{$class-type}#{$namespace}four-eighths      { @extend #{$class-type}#{$namespace}one-half; }
+    #{$class-type}#{$namespace}five-eighths      { width:62.5%; }
+    #{$class-type}#{$namespace}six-eighths       { @extend #{$class-type}#{$namespace}three-quarters; }
+    #{$class-type}#{$namespace}seven-eighths     { width:87.5%; }
 
 
     /**
      * Tenths
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-tenth         { width:10%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-tenths        { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-fifth; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-tenths      { width:30%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}four-tenths       { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-fifths; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}five-tenths       { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}six-tenths        { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-fifths; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}seven-tenths      { width:70%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}eight-tenths      { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}four-fifths; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}nine-tenths       { width:90%; }
+    #{$class-type}#{$namespace}one-tenth         { width:10%; }
+    #{$class-type}#{$namespace}two-tenths        { @extend #{$class-type}#{$namespace}one-fifth; }
+    #{$class-type}#{$namespace}three-tenths      { width:30%; }
+    #{$class-type}#{$namespace}four-tenths       { @extend #{$class-type}#{$namespace}two-fifths; }
+    #{$class-type}#{$namespace}five-tenths       { @extend #{$class-type}#{$namespace}one-half; }
+    #{$class-type}#{$namespace}six-tenths        { @extend #{$class-type}#{$namespace}three-fifths; }
+    #{$class-type}#{$namespace}seven-tenths      { width:70%; }
+    #{$class-type}#{$namespace}eight-tenths      { @extend #{$class-type}#{$namespace}four-fifths; }
+    #{$class-type}#{$namespace}nine-tenths       { width:90%; }
 
 
     /**
      * Twelfths
      */
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-twelfth       { width:8.333%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-twelfths      { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-sixth; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-twelfths    { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-quarter; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}four-twelfths     { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-third; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}five-twelfths     { width:41.666% }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}six-twelfths      { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}seven-twelfths    { width:58.333%; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}eight-twelfths    { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}two-thirds; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}nine-twelfths     { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}three-quarters; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}ten-twelfths      { @extend #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}five-sixths; }
-    #{$csswizardry-grids-class-type}#{$csswizardry-grids-namespace}eleven-twelfths   { width:91.666%; }
+    #{$class-type}#{$namespace}one-twelfth       { width:8.333%; }
+    #{$class-type}#{$namespace}two-twelfths      { @extend #{$class-type}#{$namespace}one-sixth; }
+    #{$class-type}#{$namespace}three-twelfths    { @extend #{$class-type}#{$namespace}one-quarter; }
+    #{$class-type}#{$namespace}four-twelfths     { @extend #{$class-type}#{$namespace}one-third; }
+    #{$class-type}#{$namespace}five-twelfths     { width:41.666% }
+    #{$class-type}#{$namespace}six-twelfths      { @extend #{$class-type}#{$namespace}one-half; }
+    #{$class-type}#{$namespace}seven-twelfths    { width:58.333%; }
+    #{$class-type}#{$namespace}eight-twelfths    { @extend #{$class-type}#{$namespace}two-thirds; }
+    #{$class-type}#{$namespace}nine-twelfths     { @extend #{$class-type}#{$namespace}three-quarters; }
+    #{$class-type}#{$namespace}ten-twelfths      { @extend #{$class-type}#{$namespace}five-sixths; }
+    #{$class-type}#{$namespace}eleven-twelfths   { width:91.666%; }
 
 
 }
@@ -465,11 +465,11 @@ $csswizardry-grids-class-type:            unquote(".");
 /**
  * Our responsive classes, if we have enabled them.
  */
-@if $csswizardry-grids-responsive == true{
+@if $responsive == true{
 
-    @each $csswizardry-grids-name in $csswizardry-grids-breakpoint-has-widths {
-        @include grid-media-query($csswizardry-grids-name) {
-           @include device-type('#{$csswizardry-grids-name}--');
+    @each $name in $breakpoint-has-widths {
+        @include grid-media-query($name) {
+           @include device-type('#{$name}--');
         }
     }
 
@@ -481,102 +481,102 @@ $csswizardry-grids-class-type:            unquote(".");
 
 
 /*------------------------------------*\
-    $csswizardry-grids-push
+    $PUSH
 \*------------------------------------*/
 /**
  * Push classes, to move grid items over to the right by certain amounts.
  */
-@mixin push-setup($csswizardry-grids-namespace: ""){
+@mixin push-setup($namespace: ""){
 
     /**
      * Whole
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-whole           { left:100%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-whole           { left:100%; @include silent-relative(); }
 
 
     /**
      * Halves
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-half            { left:50%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-half            { left:50%; @include silent-relative(); }
 
 
     /**
      * Thirds
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-third           { left:33.333%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-thirds          { left:66.666%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-third           { left:33.333%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}two-thirds          { left:66.666%; @include silent-relative(); }
 
 
     /**
      * Quarters
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-quarter         { left:25%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-quarters        { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-quarters      { left:75%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-quarter         { left:25%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}two-quarters        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}three-quarters      { left:75%; @include silent-relative(); }
 
 
     /**
      * Fifths
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-fifth           { left:20%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-fifths          { left:40%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-fifths        { left:60%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}four-fifths         { left:80%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-fifth           { left:20%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}two-fifths          { left:40%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}three-fifths        { left:60%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}four-fifths         { left:80%; @include silent-relative(); }
 
 
     /**
      * Sixths
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-sixth           { left:16.666%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-sixths          { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-third; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-sixths        { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}four-sixths         { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-thirds; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}five-sixths         { left:83.333%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-sixth           { left:16.666%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}two-sixths          { @extend #{$class-type}push--#{$namespace}one-third; }
+    #{$class-type}push--#{$namespace}three-sixths        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}four-sixths         { @extend #{$class-type}push--#{$namespace}two-thirds; }
+    #{$class-type}push--#{$namespace}five-sixths         { left:83.333%; @include silent-relative(); }
 
 
     /**
      * Eighths
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-eighth          { left:12.5%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-eighths         { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-quarter; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-eighths       { left:37.5%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}four-eighths        { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}five-eighths        { left:62.5%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}six-eighths         { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-quarters; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}seven-eighths       { left:87.5%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-eighth          { left:12.5%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}two-eighths         { @extend #{$class-type}push--#{$namespace}one-quarter; }
+    #{$class-type}push--#{$namespace}three-eighths       { left:37.5%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}four-eighths        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}five-eighths        { left:62.5%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}six-eighths         { @extend #{$class-type}push--#{$namespace}three-quarters; }
+    #{$class-type}push--#{$namespace}seven-eighths       { left:87.5%; @include silent-relative(); }
 
 
     /**
      * Tenths
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-tenth           { left:10%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-tenths          { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-fifth; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-tenths        { left:30%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}four-tenths         { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-fifths; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}five-tenths         { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}six-tenths          { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-fifths; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}seven-tenths        { left:70%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}eight-tenths        { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}four-fifths; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}nine-tenths         { left:90%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-tenth           { left:10%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}two-tenths          { @extend #{$class-type}push--#{$namespace}one-fifth; }
+    #{$class-type}push--#{$namespace}three-tenths        { left:30%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}four-tenths         { @extend #{$class-type}push--#{$namespace}two-fifths; }
+    #{$class-type}push--#{$namespace}five-tenths         { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}six-tenths          { @extend #{$class-type}push--#{$namespace}three-fifths; }
+    #{$class-type}push--#{$namespace}seven-tenths        { left:70%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}eight-tenths        { @extend #{$class-type}push--#{$namespace}four-fifths; }
+    #{$class-type}push--#{$namespace}nine-tenths         { left:90%; @include silent-relative(); }
 
 
     /**
      * Twelfths
      */
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-twelfth         { left:8.333%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-twelfths        { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-sixth; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-twelfths      { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-quarter; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}four-twelfths       { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-third; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}five-twelfths       { left:41.666%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}six-twelfths        { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}seven-twelfths      { left:58.333%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}eight-twelfths      { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}two-thirds; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}nine-twelfths       { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}three-quarters; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}ten-twelfths        { @extend #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}five-sixths; }
-    #{$csswizardry-grids-class-type}push--#{$csswizardry-grids-namespace}eleven-twelfths     { left:91.666%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}one-twelfth         { left:8.333%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}two-twelfths        { @extend #{$class-type}push--#{$namespace}one-sixth; }
+    #{$class-type}push--#{$namespace}three-twelfths      { @extend #{$class-type}push--#{$namespace}one-quarter; }
+    #{$class-type}push--#{$namespace}four-twelfths       { @extend #{$class-type}push--#{$namespace}one-third; }
+    #{$class-type}push--#{$namespace}five-twelfths       { left:41.666%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}six-twelfths        { @extend #{$class-type}push--#{$namespace}one-half; }
+    #{$class-type}push--#{$namespace}seven-twelfths      { left:58.333%; @include silent-relative(); }
+    #{$class-type}push--#{$namespace}eight-twelfths      { @extend #{$class-type}push--#{$namespace}two-thirds; }
+    #{$class-type}push--#{$namespace}nine-twelfths       { @extend #{$class-type}push--#{$namespace}three-quarters; }
+    #{$class-type}push--#{$namespace}ten-twelfths        { @extend #{$class-type}push--#{$namespace}five-sixths; }
+    #{$class-type}push--#{$namespace}eleven-twelfths     { left:91.666%; @include silent-relative(); }
 }
 
-@if $csswizardry-grids-push == true {
+@if $push == true {
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
@@ -587,10 +587,10 @@ $csswizardry-grids-class-type:            unquote(".");
     @include push-setup();
 
 
-    @if $csswizardry-grids-responsive == true{
-        @each $csswizardry-grids-name in $csswizardry-grids-breakpoint-has-push {
-            @include grid-media-query($csswizardry-grids-name) {
-               @include  push-setup('#{$csswizardry-grids-name}--');
+    @if $responsive == true{
+        @each $name in $breakpoint-has-push {
+            @include grid-media-query($name) {
+               @include  push-setup('#{$name}--');
             }
         }
     }
@@ -603,102 +603,102 @@ $csswizardry-grids-class-type:            unquote(".");
 
 
 /*------------------------------------*\
-    $csswizardry-grids-pull
+    $PULL
 \*------------------------------------*/
 /**
  * Pull classes, to move grid items back to the left by certain amounts.
  */
-@mixin pull-setup($csswizardry-grids-namespace: ""){
+@mixin pull-setup($namespace: ""){
 
     /**
      * Whole
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-whole           { right:100%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-whole           { right:100%; @include silent-relative(); }
 
 
     /**
      * Halves
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-half            { right:50%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-half            { right:50%; @include silent-relative(); }
 
 
     /**
      * Thirds
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-third           { right:33.333%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-thirds          { right:66.666%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-third           { right:33.333%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}two-thirds          { right:66.666%; @include silent-relative(); }
 
 
     /**
      * Quarters
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-quarter         { right:25%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-quarters        { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-quarters      { right:75%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-quarter         { right:25%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}two-quarters        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}three-quarters      { right:75%; @include silent-relative(); }
 
 
     /**
      * Fifths
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-fifth           { right:20%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-fifths          { right:40%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-fifths        { right:60%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}four-fifths         { right:80%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-fifth           { right:20%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}two-fifths          { right:40%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}three-fifths        { right:60%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}four-fifths         { right:80%; @include silent-relative(); }
 
 
     /**
      * Sixths
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-sixth           { right:16.666%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-sixths          { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-third; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-sixths        { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}four-sixths         { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-thirds; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}five-sixths         { right:83.333%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-sixth           { right:16.666%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}two-sixths          { @extend #{$class-type}pull--#{$namespace}one-third; }
+    #{$class-type}pull--#{$namespace}three-sixths        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}four-sixths         { @extend #{$class-type}pull--#{$namespace}two-thirds; }
+    #{$class-type}pull--#{$namespace}five-sixths         { right:83.333%; @include silent-relative(); }
 
 
     /**
      * Eighths
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-eighth          { right:12.5%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-eighths         { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-quarter; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-eighths       { right:37.5%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}four-eighths        { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}five-eighths        { right:62.5%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}six-eighths         { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-quarters; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}seven-eighths       { right:87.5%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-eighth          { right:12.5%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}two-eighths         { @extend #{$class-type}pull--#{$namespace}one-quarter; }
+    #{$class-type}pull--#{$namespace}three-eighths       { right:37.5%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}four-eighths        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}five-eighths        { right:62.5%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}six-eighths         { @extend #{$class-type}pull--#{$namespace}three-quarters; }
+    #{$class-type}pull--#{$namespace}seven-eighths       { right:87.5%; @include silent-relative(); }
 
 
     /**
      * Tenths
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-tenth           { right:10%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-tenths          { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-fifth; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-tenths        { right:30%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}four-tenths         { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-fifths; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}five-tenths         { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}six-tenths          { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-fifths; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}seven-tenths        { right:70%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}eight-tenths        { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}four-fifths; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}nine-tenths         { right:90%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-tenth           { right:10%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}two-tenths          { @extend #{$class-type}pull--#{$namespace}one-fifth; }
+    #{$class-type}pull--#{$namespace}three-tenths        { right:30%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}four-tenths         { @extend #{$class-type}pull--#{$namespace}two-fifths; }
+    #{$class-type}pull--#{$namespace}five-tenths         { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}six-tenths          { @extend #{$class-type}pull--#{$namespace}three-fifths; }
+    #{$class-type}pull--#{$namespace}seven-tenths        { right:70%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}eight-tenths        { @extend #{$class-type}pull--#{$namespace}four-fifths; }
+    #{$class-type}pull--#{$namespace}nine-tenths         { right:90%; @include silent-relative(); }
 
 
     /**
      * Twelfths
      */
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-twelfth         { right:8.333%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-twelfths        { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-sixth; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-twelfths      { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-quarter; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}four-twelfths       { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-third; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}five-twelfths       { right:41.666%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}six-twelfths        { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}one-half; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}seven-twelfths      { right:58.333%; @include silent-relative(); }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}eight-twelfths      { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}two-thirds; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}nine-twelfths       { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}three-quarters; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}ten-twelfths        { @extend #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}five-sixths; }
-    #{$csswizardry-grids-class-type}pull--#{$csswizardry-grids-namespace}eleven-twelfths     { right:91.666%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}one-twelfth         { right:8.333%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}two-twelfths        { @extend #{$class-type}pull--#{$namespace}one-sixth; }
+    #{$class-type}pull--#{$namespace}three-twelfths      { @extend #{$class-type}pull--#{$namespace}one-quarter; }
+    #{$class-type}pull--#{$namespace}four-twelfths       { @extend #{$class-type}pull--#{$namespace}one-third; }
+    #{$class-type}pull--#{$namespace}five-twelfths       { right:41.666%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}six-twelfths        { @extend #{$class-type}pull--#{$namespace}one-half; }
+    #{$class-type}pull--#{$namespace}seven-twelfths      { right:58.333%; @include silent-relative(); }
+    #{$class-type}pull--#{$namespace}eight-twelfths      { @extend #{$class-type}pull--#{$namespace}two-thirds; }
+    #{$class-type}pull--#{$namespace}nine-twelfths       { @extend #{$class-type}pull--#{$namespace}three-quarters; }
+    #{$class-type}pull--#{$namespace}ten-twelfths        { @extend #{$class-type}pull--#{$namespace}five-sixths; }
+    #{$class-type}pull--#{$namespace}eleven-twelfths     { right:91.666%; @include silent-relative(); }
 }
 
-@if $csswizardry-grids-pull == true{
+@if $pull == true{
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
@@ -709,10 +709,10 @@ $csswizardry-grids-class-type:            unquote(".");
     @include pull-setup();
 
 
-    @if $csswizardry-grids-responsive == true{
-        @each $csswizardry-grids-name in $csswizardry-grids-breakpoint-has-pull {
-            @include grid-media-query($csswizardry-grids-name) {
-               @include  pull-setup('#{$csswizardry-grids-name}--');
+    @if $responsive == true{
+        @each $name in $breakpoint-has-pull {
+            @include grid-media-query($name) {
+               @include  pull-setup('#{$name}--');
             }
         }
     }
