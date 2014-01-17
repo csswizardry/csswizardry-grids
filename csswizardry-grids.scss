@@ -150,7 +150,11 @@ $breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
 $class-type:            unquote(".");
 
 @if $use-silent-classes == true{
-    $class-type:        unquote("%");
+    /*
+     * Deprecated in future versions of SASS
+       $class-type:        unquote("%");
+     */ 
+     $class-type:        unquote("%")!global;
 }
 
 
