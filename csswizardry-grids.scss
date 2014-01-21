@@ -7,6 +7,7 @@
  * VARIABLES............Your settings.
  * MIXINS...............Library mixins.
  * GRID SETUP...........Build the grid structure.
+ * HELPERS..............Create helper show/hide classes around our breakpoints.
  * WIDTHS...............Build our responsive widths around our breakpoints.
  * PUSH.................Push classes.
  * PULL.................Pull classes.
@@ -451,11 +452,25 @@ $class-type:            unquote(".");
 
 }
 
+/*------------------------------------*\
+  $HELPERS
+\*------------------------------------*/
+/**
+ * Create helper show/hide classes, prefixed by the specified namespace.
+ */
+@mixin device-helper($namespace:"") {
+
+  #{$class-type}#{$namespace}show     { display:block; }
+  #{$class-type}#{$namespace}hide     { display:none; }
+
+}
+
 
 /**
- * Our regular, non-responsive width classes.
+ * Our regular, non-responsive width and helper classes.
  */
 @include device-type();
+@include device-helper();
 
 
 /**
@@ -466,6 +481,10 @@ $class-type:            unquote(".");
     @each $name in $breakpoint-has-widths {
         @include grid-media-query($name) {
            @include device-type('#{$name}--');
+        }
+
+        @include grid-media-query($name) {
+          @include device-helper('#{$name}--');
         }
     }
 
@@ -715,4 +734,3 @@ $class-type:            unquote(".");
 
 
 }
-
