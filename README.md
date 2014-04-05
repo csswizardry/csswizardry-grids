@@ -1,4 +1,4 @@
-# csswizardry-grids [![Build Status](https://travis-ci.org/csswizardry/csswizardry-grids.png?branch=master)](https://travis-ci.org/csswizardry/csswizardry-grids)
+# csswizardry-grids [![Build Status](https://travis-ci.org/csswizardry/csswizardry-grids.svg?branch=master)](https://travis-ci.org/csswizardry/csswizardry-grids)
 
 **Simple, fluid, nestable, flexible, Sass-based, responsive grid system.**
 
