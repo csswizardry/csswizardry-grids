@@ -84,7 +84,7 @@ $mobile-first:          true!default;
 /**
  * Set the spacing between your grid items.
  */
-$gutter:                24px!default;
+$gutter:                1.5em!default;
 
 
 /**
@@ -120,11 +120,18 @@ $use-markup-fix:        true!default;
  * your classes (e.g. `.palm--one-half`), the second value is the media query
  * that the breakpoint fires at.
  */
+
+/**
+* Using em because of zoom
+* Please see the following for more detail:
+* http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/
+*/
+
 $breakpoints: (
-    'palm' '(max-width: 480px)',
-    'lap' '(min-width: 481px) and (max-width: 1023px)',
-    'portable' '(max-width: 1023px)',
-    'desk' '(min-width: 1024px)'
+    'palm' '(max-width: 30em)',
+    'lap' '(min-width: 30.063em) and (max-width: 63.938em)',
+    'portable' '(max-width: 63.938em)',
+    'desk' '(min-width: 64em)'
 )!default;
 
 
