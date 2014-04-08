@@ -137,10 +137,14 @@ $breakpoints: (
  *
  * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
  * have been set to ‘true’.
+ *
+ * Define which namespaced breakpoints you would like to generate for each of
+ * grid modifiers (e.g. lap--grid--center).
  */
-$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk')!default;
-$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk')!default;
-$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-widths:    ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-push:      ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-pull:      ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-modifiers: ('palm', 'lap', 'portable', 'desk')!default;
 
 
 /**
@@ -254,98 +258,184 @@ $class-type:            unquote(".");
 
 
 /**
- * Reversed grids allow you to structure your source in the opposite order to
- * how your rendered layout will appear. Extends `.grid`.
- */
-#{$class-type}grid--rev{
-    direction:rtl;
-    text-align:left;
+* Create our grid classes, prefixed by the specified namespace.
+*/
+@mixin grid-setup($namespace:""){
 
-    > #{$class-type}grid__item{
-        direction:ltr;
+
+    /**
+     * Generate #{$namespace}grid--ltr, #{$namespace}grid--spaced, #{$namespace}grid--left, and #{$namespace}grid--top classes only when namespace is not empty, as those modifiers have the same CSS as `grid`.
+     */
+    @if $namespace != ''{
+        /**
+         * 1. Apply a negative `margin-left` to negate the columns’ gutters.
+         * 2. Space columns apart.
+         */
+        #{$class-type}#{$namespace}grid--spaced{
+            margin-left:-$gutter;               /* [1] */
+
+            > #{$class-type}grid__item{
+                padding-left:$gutter;           /* [2] */
+            }
+        }
+
+        /**
+         * Normal order of grid items, as they are structured in your source.
+         */
+        #{$class-type}#{$namespace}grid--ltr{
+            direction:ltr;
+            text-align: left;
+
+            > #{$class-type}grid__item{
+                direction:ltr;
+            }
+        }
+
+        /**
+         * Align the entire grid to the left.
+         */
+        #{$class-type}#{$namespace}grid--left{
+            text-align:left;
+        }
+
+        /**
+         * Align grid cells vertically to top.
+         */
+        #{$class-type}#{$namespace}grid--top{
+
+            > #{$class-type}grid__item{
+                vertical-align:top;
+            }
+        }
+
+        /**
+         * Create grids with normal width gutters.
+         */
+        #{$class-type}#{$namespace}grid--default-width{
+            margin-left:-$gutter;
+
+            > #{$class-type}grid__item{
+                padding-left:$gutter;
+            }
+        }      
+
+    }
+
+    /**
+     * Reversed grids allow you to structure your source in the opposite order to
+     * how your rendered layout will appear. Extends `.grid`.
+     */
+    #{$class-type}#{$namespace}grid--rtr{
+        direction:rtl;
         text-align:left;
+
+        > #{$class-type}grid__item{
+            direction:ltr;
+        }
     }
+
+
+    /**
+     * Gutterless grids have all the properties of regular grids, minus any spacing.
+     * Extends `.grid`.
+     */
+    #{$class-type}#{$namespace}grid--full{
+        margin-left:0;
+
+        > #{$class-type}grid__item{
+            padding-left:0;
+        }
+    }
+
+
+    /**
+     * Align the entire grid to the right. Extends `.grid`.
+     */
+    #{$class-type}#{$namespace}grid--right{
+        text-align:right;
+
+        > #{$class-type}grid__item{
+            text-align:left;
+        }
+    }
+
+
+    /**
+     * Centered grids align grid items centrally without needing to use push or pull
+     * classes. Extends `.grid`.
+     */
+    #{$class-type}#{$namespace}grid--center{
+        text-align:center;
+
+        > #{$class-type}grid__item{
+            text-align:left;
+        }
+    }
+
+
+    /**
+     * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
+     * `.grid`.
+     */
+    #{$class-type}#{$namespace}grid--middle{
+
+        > #{$class-type}grid__item{
+            vertical-align:middle;
+        }
+    }
+
+    #{$class-type}#{$namespace}grid--bottom{
+
+        > #{$class-type}grid__item{
+            vertical-align:bottom;
+        }
+    }
+
+
+    /**
+     * Create grids with narrower gutters. Extends `.grid`.
+     */
+    #{$class-type}#{$namespace}grid--narrow{
+        margin-left:-($gutter / 2);
+
+        > #{$class-type}grid__item{
+            padding-left:$gutter / 2;
+        }
+    }
+
+
+    /**
+     * Create grids with wider gutters. Extends `.grid`.
+     */
+    #{$class-type}#{$namespace}grid--wide{
+        margin-left:-($gutter * 2);
+
+        > #{$class-type}grid__item{
+            padding-left:$gutter * 2;
+        }
+    }
+
 }
 
 
 /**
- * Gutterless grids have all the properties of regular grids, minus any spacing.
- * Extends `.grid`.
- */
-#{$class-type}grid--full{
-    margin-left:0;
-
-    > #{$class-type}grid__item{
-        padding-left:0;
-    }
-}
+* Our regular, non-responsive grid classes.
+*/
+@include grid-setup();
 
 
 /**
- * Align the entire grid to the right. Extends `.grid`.
- */
-#{$class-type}grid--right{
-    text-align:right;
+* Our responsive classes, if we have enabled them.
+*/
+@if $responsive == true{
 
-    > #{$class-type}grid__item{
-        text-align:left;
+    @each $name in $breakpoint-has-modifiers {
+        @include grid-media-query($name) {
+           @include grid-setup('#{$name}--');
+        }
     }
-}
 
 
-/**
- * Centered grids align grid items centrally without needing to use push or pull
- * classes. Extends `.grid`.
- */
-#{$class-type}grid--center{
-    text-align:center;
-
-    > #{$class-type}grid__item{
-        text-align:left;
-    }
-}
-
-
-/**
- * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
- * `.grid`.
- */
-#{$class-type}grid--middle{
-
-    > #{$class-type}grid__item{
-        vertical-align:middle;
-    }
-}
-
-#{$class-type}grid--bottom{
-
-    > #{$class-type}grid__item{
-        vertical-align:bottom;
-    }
-}
-
-
-/**
- * Create grids with narrower gutters. Extends `.grid`.
- */
-#{$class-type}grid--narrow{
-    margin-left:-($gutter / 2);
-
-    > #{$class-type}grid__item{
-        padding-left:$gutter / 2;
-    }
-}
-
-
-/**
- * Create grids with wider gutters. Extends `.grid`.
- */
-#{$class-type}grid--wide{
-    margin-left:-($gutter * 2);
-
-    > #{$class-type}grid__item{
-        padding-left:$gutter * 2;
-    }
 }
 
 
