@@ -84,7 +84,7 @@ $mobile-first:          true!default;
 /**
  * Set the spacing between your grid items.
  */
-$gutter:                24px!default;
+$gutter:               1.25em!default; // 20px
 
 
 /**
@@ -121,10 +121,11 @@ $use-markup-fix:        true!default;
  * that the breakpoint fires at.
  */
 $breakpoints: (
-    'palm' '(max-width: 480px)',
-    'lap' '(min-width: 481px) and (max-width: 1023px)',
-    'portable' '(max-width: 1023px)',
-    'desk' '(min-width: 1024px)'
+    'phone-landscape' '(min-width: 30em)', // 480px
+    'tablet-portrait' '(min-width: 40em)', // 640px
+    'tablet-landscape' '(min-width: 64em)', // 1024px
+    'desktop' '(min-width: 80em)', // 1280px
+    'retina' '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
 )!default;
 
 
@@ -138,9 +139,9 @@ $breakpoints: (
  * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
  * have been set to ‘true’.
  */
-$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk')!default;
-$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk')!default;
-$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-widths: ('phone-landscape', 'tablet-portrait', 'tablet-landscape', 'desktop')!default;
+$breakpoint-has-push:   ('phone-landscape', 'tablet-portrait', 'tablet-landscape', 'desktop')!default;
+$breakpoint-has-pull:   ('phone-landscape', 'tablet-portrait', 'tablet-landscape', 'desktop')!default;
 
 
 /**
@@ -468,8 +469,25 @@ $class-type:            unquote(".");
            @include device-type('#{$name}--');
         }
     }
+}
 
+@mixin visuallyhidden() {
+    border:0!important;
+    clip:rect(0 0 0 0)!important;
+    height:1px!important;
+    margin:-1px!important;
+    overflow:hidden!important;
+    padding:0!important;
+    position: absolute!important;
+    width:1px!important;
+}
 
+@each $state in $breakpoint-has-widths{
+    @include grid-media-query(#{$state}){
+        .hide--#{$state}{
+            @include visuallyhidden();
+        }
+    }
 }
 
 
@@ -715,4 +733,3 @@ $class-type:            unquote(".");
 
 
 }
-
