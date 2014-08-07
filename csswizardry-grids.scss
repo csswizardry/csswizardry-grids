@@ -71,33 +71,33 @@
  * If you are building a non-responsive site but would still like to use
  * csswizardry-grids, set this to ‘false’:
  */
-$responsive:            true!default;
+$responsive:            true !default;
 
 
 /**
  * Is this build mobile first? Setting to ‘true’ means that all grids will be
  * 100% width if you do not apply a more specific class to them.
  */
-$mobile-first:          true!default;
+$mobile-first:          true !default;
 
 
 /**
  * Set the spacing between your grid items.
  */
-$gutter:                24px!default;
+$gutter:                24px !default;
 
 
 /**
  * Would you like Sass’ silent classes, or regular CSS classes?
  */
-$use-silent-classes:    false!default;
+$use-silent-classes:    false !default;
 
 
 /**
  * Would you like push and pull classes enabled?
  */
-$push:                  false!default;
-$pull:                  false!default;
+$push:                  false !default;
+$pull:                  false !default;
 
 
 /**
@@ -112,7 +112,7 @@ $pull:                  false!default;
  * github.com/csswizardry/csswizardry-grids/commit/744d4b23c9d2b77d605b5991e54a397df72e0688
  * github.com/csswizardry/inuit.css/issues/170#issuecomment-14859371
  */
-$use-markup-fix:        true!default;
+$use-markup-fix:        true !default;
 
 
 /**
@@ -125,7 +125,7 @@ $breakpoints: (
     'lap' '(min-width: 481px) and (max-width: 1023px)',
     'portable' '(max-width: 1023px)',
     'desk' '(min-width: 1024px)'
-)!default;
+) !default;
 
 
 /**
@@ -138,9 +138,9 @@ $breakpoints: (
  * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
  * have been set to ‘true’.
  */
-$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk')!default;
-$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk')!default;
-$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
+$breakpoint-has-widths: ('palm', 'lap', 'portable', 'desk') !default;
+$breakpoint-has-push:   ('palm', 'lap', 'portable', 'desk') !default;
+$breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk') !default;
 
 
 /**
