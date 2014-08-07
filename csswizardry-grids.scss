@@ -187,7 +187,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  * Drop relative positioning into silent classes which can’t take advantage of
  * the `[class*="push--"]` and `[class*="pull--"]` selectors.
  */
-@mixin silent-relative(){
+@mixin silent-relative{
     @if $use-silent-classes{
         position:relative;
     }
