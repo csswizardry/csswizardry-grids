@@ -178,7 +178,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     }
 
     @if not $breakpoint-found{
-        @warn "Breakpoint ‘#{$media-query}’ does not exist"
+        @warn "Breakpoint ‘#{$media-query}’ does not exist";
     }
 }
 
