@@ -147,12 +147,7 @@ $breakpoint-has-pull:   ('palm', 'lap', 'portable', 'desk')!default;
  * You do not need to edit anything from this line onward; csswizardry-grids is
  * good to go. Happy griddin’!
  */
-$class-type:            unquote(".");
-
-@if $use-silent-classes == true{
-    $class-type:        unquote("%");
-}
-
+$class-type: if($use-silent-classes, unquote("%"), unquote("."));
 
 
 
