@@ -182,7 +182,7 @@ $class-type:            unquote(".");
         }
     }
 
-    @if $breakpoint-found == false{
+    @if not $breakpoint-found{
         @warn "Breakpoint ‘#{$media-query}’ does not exist"
     }
 }
@@ -193,7 +193,7 @@ $class-type:            unquote(".");
  * the `[class*="push--"]` and `[class*="pull--"]` selectors.
  */
 @mixin silent-relative(){
-    @if $use-silent-classes == true{
+    @if $use-silent-classes{
         position:relative;
     }
 }
@@ -215,12 +215,12 @@ $class-type:            unquote(".");
     margin:0;                       /* [2] */
     padding:0;                      /* [2] */
     margin-left:-$gutter;           /* [3] */
-    @if $use-markup-fix != true{
+    @if not $use-markup-fix{
         letter-spacing:-0.31em;
     }
 }
 
-@if $use-markup-fix != true{
+@if not $use-markup-fix{
     /* Opera hack */
     .opera:-o-prefocus,
     #{$class-type}grid{
@@ -240,13 +240,13 @@ $class-type:            unquote(".");
         display:inline-block;           /* [1] */
         padding-left:$gutter;           /* [2] */
         vertical-align:top;             /* [3] */
-        @if $mobile-first == true{
+        @if $mobile-first{
             width:100%;                 /* [4] */
         }
         -webkit-box-sizing:border-box;  /* [5] */
            -moz-box-sizing:border-box;  /* [5] */
                 box-sizing:border-box;  /* [5] */
-        @if $use-markup-fix != true{
+        @if not $use-markup-fix{
             letter-spacing:normal;
             word-spacing:normal;
         }
@@ -461,7 +461,7 @@ $class-type:            unquote(".");
 /**
  * Our responsive classes, if we have enabled them.
  */
-@if $responsive == true{
+@if $responsive{
 
     @each $name in $breakpoint-has-widths {
         @include grid-media-query($name) {
@@ -572,7 +572,7 @@ $class-type:            unquote(".");
     #{$class-type}push--#{$namespace}eleven-twelfths     { left:91.666%; @include silent-relative(); }
 }
 
-@if $push == true {
+@if $push{
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
@@ -583,7 +583,7 @@ $class-type:            unquote(".");
     @include push-setup();
 
 
-    @if $responsive == true{
+    @if $responsive{
         @each $name in $breakpoint-has-push {
             @include grid-media-query($name) {
                @include  push-setup('#{$name}--');
@@ -694,7 +694,7 @@ $class-type:            unquote(".");
     #{$class-type}pull--#{$namespace}eleven-twelfths     { right:91.666%; @include silent-relative(); }
 }
 
-@if $pull == true{
+@if $pull{
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
@@ -705,7 +705,7 @@ $class-type:            unquote(".");
     @include pull-setup();
 
 
-    @if $responsive == true{
+    @if $responsive{
         @each $name in $breakpoint-has-pull {
             @include grid-media-query($name) {
                @include  pull-setup('#{$name}--');
