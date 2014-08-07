@@ -152,6 +152,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 
 
 
+
 /*------------------------------------*\
     $MIXINS
 \*------------------------------------*/
@@ -442,8 +443,6 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     #{$prefix}nine-twelfths     { @extend #{$prefix}three-quarters; }
     #{$prefix}ten-twelfths      { @extend #{$prefix}five-sixths; }
     #{$prefix}eleven-twelfths   { width:91.666%; }
-
-
 }
 
 
@@ -463,7 +462,6 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
            @include device-type('#{$name}--');
         }
     }
-
 
 }
 
@@ -575,18 +573,15 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
      */
     [class*="push--"] { position:relative; }
 
-
     @include push-setup;
-
 
     @if $responsive {
         @each $name in $breakpoint-has-push {
             @include grid-media-query($name) {
-               @include  push-setup('#{$name}--');
+                @include push-setup('#{$name}--');
             }
         }
     }
-
 
 }
 
@@ -698,18 +693,14 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
      */
     [class*="pull--"] { position:relative; }
 
-
     @include pull-setup;
-
 
     @if $responsive {
         @each $name in $breakpoint-has-pull {
             @include grid-media-query($name) {
-               @include  pull-setup('#{$name}--');
+                @include pull-setup('#{$name}--');
             }
         }
     }
 
-
 }
-
