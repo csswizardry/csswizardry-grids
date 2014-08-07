@@ -161,23 +161,23 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  *
  * Enclose a block of code with a media query as named in `$breakpoints`.
  */
-@mixin grid-media-query($media-query){
+@mixin grid-media-query($media-query) {
     $breakpoint-found: false;
 
-    @each $breakpoint in $breakpoints{
+    @each $breakpoint in $breakpoints {
         $name: nth($breakpoint, 1);
         $declaration: nth($breakpoint, 2);
 
-        @if $media-query == $name and $declaration{
+        @if $media-query == $name and $declaration {
             $breakpoint-found: true;
 
-            @media only screen and #{$declaration}{
+            @media only screen and #{$declaration} {
                 @content;
             }
         }
     }
 
-    @if not $breakpoint-found{
+    @if not $breakpoint-found {
         @warn "Breakpoint ‘#{$media-query}’ does not exist";
     }
 }
@@ -187,8 +187,8 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  * Drop relative positioning into silent classes which can’t take advantage of
  * the `[class*="push--"]` and `[class*="pull--"]` selectors.
  */
-@mixin silent-relative{
-    @if $use-silent-classes{
+@mixin silent-relative {
+    @if $use-silent-classes {
         position:relative;
     }
 }
@@ -205,20 +205,20 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  * 2. Remove any margins and paddings that might affect the grid system.
  * 3. Apply a negative `margin-left` to negate the columns’ gutters.
  */
-#{$class-type}grid{
+#{$class-type}grid {
     list-style:none;                /* [1] */
     margin:0;                       /* [2] */
     padding:0;                      /* [2] */
     margin-left:-$gutter;           /* [3] */
-    @if not $use-markup-fix{
+    @if not $use-markup-fix {
         letter-spacing:-0.31em;
     }
 }
 
-@if not $use-markup-fix{
+@if not $use-markup-fix {
     /* Opera hack */
     .opera:-o-prefocus,
-    #{$class-type}grid{
+    #{$class-type}grid {
         word-spacing:-0.43em;
     }
 }
@@ -231,17 +231,17 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
      * 4. Full-width unless told to behave otherwise.
      * 5. Required to combine fluid widths and fixed gutters.
      */
-    #{$class-type}grid__item{
+    #{$class-type}grid__item {
         display:inline-block;           /* [1] */
         padding-left:$gutter;           /* [2] */
         vertical-align:top;             /* [3] */
-        @if $mobile-first{
+        @if $mobile-first {
             width:100%;                 /* [4] */
         }
         -webkit-box-sizing:border-box;  /* [5] */
            -moz-box-sizing:border-box;  /* [5] */
                 box-sizing:border-box;  /* [5] */
-        @if not $use-markup-fix{
+        @if not $use-markup-fix {
             letter-spacing:normal;
             word-spacing:normal;
         }
@@ -252,11 +252,11 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  * Reversed grids allow you to structure your source in the opposite order to
  * how your rendered layout will appear. Extends `.grid`.
  */
-#{$class-type}grid--rev{
+#{$class-type}grid--rev {
     direction:rtl;
     text-align:left;
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         direction:ltr;
         text-align:left;
     }
@@ -267,10 +267,10 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  * Gutterless grids have all the properties of regular grids, minus any spacing.
  * Extends `.grid`.
  */
-#{$class-type}grid--full{
+#{$class-type}grid--full {
     margin-left:0;
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         padding-left:0;
     }
 }
@@ -279,10 +279,10 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 /**
  * Align the entire grid to the right. Extends `.grid`.
  */
-#{$class-type}grid--right{
+#{$class-type}grid--right {
     text-align:right;
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         text-align:left;
     }
 }
@@ -292,10 +292,10 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  * Centered grids align grid items centrally without needing to use push or pull
  * classes. Extends `.grid`.
  */
-#{$class-type}grid--center{
+#{$class-type}grid--center {
     text-align:center;
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         text-align:left;
     }
 }
@@ -305,16 +305,16 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
  * Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends
  * `.grid`.
  */
-#{$class-type}grid--middle{
+#{$class-type}grid--middle {
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         vertical-align:middle;
     }
 }
 
-#{$class-type}grid--bottom{
+#{$class-type}grid--bottom {
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         vertical-align:bottom;
     }
 }
@@ -323,10 +323,10 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 /**
  * Create grids with narrower gutters. Extends `.grid`.
  */
-#{$class-type}grid--narrow{
+#{$class-type}grid--narrow {
     margin-left:-($gutter / 2);
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         padding-left:$gutter / 2;
     }
 }
@@ -335,10 +335,10 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 /**
  * Create grids with wider gutters. Extends `.grid`.
  */
-#{$class-type}grid--wide{
+#{$class-type}grid--wide {
     margin-left:-($gutter * 2);
 
-    > #{$class-type}grid__item{
+    > #{$class-type}grid__item {
         padding-left:$gutter * 2;
     }
 }
@@ -353,7 +353,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 /**
  * Create our width classes, prefixed by the specified namespace.
  */
-@mixin device-type($namespace:""){
+@mixin device-type($namespace:"") {
     $prefix: $class-type + $namespace;
 
     /**
@@ -456,7 +456,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 /**
  * Our responsive classes, if we have enabled them.
  */
-@if $responsive{
+@if $responsive {
 
     @each $name in $breakpoint-has-widths {
         @include grid-media-query($name) {
@@ -477,7 +477,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 /**
  * Push classes, to move grid items over to the right by certain amounts.
  */
-@mixin push-setup($namespace: ""){
+@mixin push-setup($namespace: "") {
     $prefix: $class-type + "push--" + $namespace;
 
     /**
@@ -568,18 +568,18 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     #{$prefix}eleven-twelfths     { left:91.666%; @include silent-relative; }
 }
 
-@if $push{
+@if $push {
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
      */
-    [class*="push--"]{ position:relative; }
+    [class*="push--"] { position:relative; }
 
 
     @include push-setup;
 
 
-    @if $responsive{
+    @if $responsive {
         @each $name in $breakpoint-has-push {
             @include grid-media-query($name) {
                @include  push-setup('#{$name}--');
@@ -600,7 +600,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 /**
  * Pull classes, to move grid items back to the left by certain amounts.
  */
-@mixin pull-setup($namespace: ""){
+@mixin pull-setup($namespace: "") {
     $prefix: $class-type + "pull--" + $namespace;
 
     /**
@@ -691,18 +691,18 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     #{$prefix}eleven-twelfths     { right:91.666%; @include silent-relative; }
 }
 
-@if $pull{
+@if $pull {
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
      */
-    [class*="pull--"]{ position:relative; }
+    [class*="pull--"] { position:relative; }
 
 
     @include pull-setup;
 
 
-    @if $responsive{
+    @if $responsive {
         @each $name in $breakpoint-has-pull {
             @include grid-media-query($name) {
                @include  pull-setup('#{$name}--');
