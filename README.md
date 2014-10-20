@@ -117,7 +117,42 @@ be guaranteed. Always take care to check things over if using this method.
 
 If you need to use csswizardry-grids with a CMS, or data coming out of a loop,
 you will need to format your template something a little like this:
-[codepad.viper-7.com/MdpMjx](http://codepad.viper-7.com/MdpMjx)
+
+```php
+<style>
+
+.grid__item {
+    display: inline-block;
+}
+
+.one-third {
+    width: 33.333333333%;
+}
+
+</style>
+
+<div class="grid">
+<!--
+<?php
+    $items = array('foo', 'bar', 'baz');
+
+    foreach ($items as $item) {
+?>
+
+--><div class="grid__item  one-third"><?= $item ?></div><!--
+
+<?php
+    }
+?>
+-->
+</div>
+```
+
+Note the opening and closing comments before and after the loop, and the
+corresponding opening and closing comments facing outward from the `.grid__item`
+element. Try pasting the above into [the codepad
+code runner](http://codepad.viper-7.com/): items from a loop without the need
+for a counter :)
 
 ---
 
