@@ -119,18 +119,6 @@ If you need to use csswizardry-grids with a CMS, or data coming out of a loop,
 you will need to format your template something a little like this:
 
 ```php
-<style>
-
-.grid__item {
-    display: inline-block;
-}
-
-.one-third {
-    width: 33.333333333%;
-}
-
-</style>
-
 <div class="grid">
 <!--
 <?php
@@ -139,7 +127,9 @@ you will need to format your template something a little like this:
     foreach ($items as $item) {
 ?>
 
---><div class="grid__item  one-third"><?= $item ?></div><!--
+--><div class="grid__item  one-third">
+    <?= $item ?>
+</div><!--
 
 <?php
     }
