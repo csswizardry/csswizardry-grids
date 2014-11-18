@@ -68,6 +68,52 @@
     $VARIABLES
 \*------------------------------------*/
 /**
+ * If you want numbers instead of names (example : 'one-whole' becomes '1-1', 'third-quarters' becomes '3-4' etc...)
+ */
+$use-numbers-instead-names: false !default;
+
+/**
+ * When the first char of a class is a digit, you need to convert it to his unicode
+ * http://stackoverflow.com/a/21229901
+ * http://www.w3.org/TR/css3-syntax/#escaping
+ *
+ * But Sass doesn't support it yet...
+ * https://github.com/sass/sass/issues/255
+ *
+ * So while waiting for this is possible, this is the code.
+ */
+
+$one:       if($use-numbers-instead-names, "\31", "one");
+$two:       if($use-numbers-instead-names, "\32", "two");
+$three:     if($use-numbers-instead-names, "\33", "three");
+$four:      if($use-numbers-instead-names, "\34", "four");
+$five:      if($use-numbers-instead-names, "\35", "five");
+$six:       if($use-numbers-instead-names, "\36", "six");
+$seven:     if($use-numbers-instead-names, "\37", "seven");
+$eight:     if($use-numbers-instead-names, "\38", "eight");
+$nine:      if($use-numbers-instead-names, "\39", "nine");
+$ten:       if($use-numbers-instead-names, "\31\30", "ten");
+$eleven:    if($use-numbers-instead-names, "\31\31", "eleven");
+
+$whole:     if($use-numbers-instead-names, "\31", "whole");
+$half:      if($use-numbers-instead-names, "\32", "half");
+$third:     if($use-numbers-instead-names, "\33", "third");
+$thirds:    if($use-numbers-instead-names, "\33", "thirds");
+$quarter:   if($use-numbers-instead-names, "\34", "quarter");
+$quarters:  if($use-numbers-instead-names, "\34", "quarters");
+$fifth:     if($use-numbers-instead-names, "\35", "fifth");
+$fifths:    if($use-numbers-instead-names, "\35", "fifths");
+$sixth:     if($use-numbers-instead-names, "\36", "sixth");
+$sixths:    if($use-numbers-instead-names, "\36", "sixths");
+$eighth:    if($use-numbers-instead-names, "\38", "eighth");
+$eighths:   if($use-numbers-instead-names, "\38", "eighths");
+$tenth:     if($use-numbers-instead-names, "\31\30", "tenth");
+$tenths:    if($use-numbers-instead-names, "\31\30", "tenths");
+$twelfth:   if($use-numbers-instead-names, "\31\32", "twelfth");
+$twelfths:  if($use-numbers-instead-names, "\31\32", "twelfths");
+
+
+/**
  * If you are building a non-responsive site but would still like to use
  * csswizardry-grids, set this to ‘false’:
  */
@@ -360,89 +406,89 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     /**
      * Whole
      */
-    #{$prefix}one-whole         { width:100%; }
+    #{$prefix}#{$one}-#{$whole}         { width:100%; }
 
 
     /**
      * Halves
      */
-    #{$prefix}one-half          { width:50%; }
+    #{$prefix}#{$one}-#{$half}          { width:50%; }
 
 
     /**
      * Thirds
      */
-    #{$prefix}one-third         { width:33.333%; }
-    #{$prefix}two-thirds        { width:66.666%; }
+    #{$prefix}#{$one}-#{$third}         { width:33.333%; }
+    #{$prefix}#{$two}-#{$thirds}        { width:66.666%; }
 
 
     /**
      * Quarters
      */
-    #{$prefix}one-quarter       { width:25%; }
-    #{$prefix}two-quarters      { @extend #{$prefix}one-half; }
-    #{$prefix}three-quarters    { width:75%; }
+    #{$prefix}#{$one}-#{$quarter}       { width:25%; }
+    #{$prefix}#{$two}-#{$quarters}      { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$three}-#{$quarters}    { width:75%; }
 
 
     /**
      * Fifths
      */
-    #{$prefix}one-fifth         { width:20%; }
-    #{$prefix}two-fifths        { width:40%; }
-    #{$prefix}three-fifths      { width:60%; }
-    #{$prefix}four-fifths       { width:80%; }
+    #{$prefix}#{$one}-#{$fifth}         { width:20%; }
+    #{$prefix}#{$two}-#{$fifths}        { width:40%; }
+    #{$prefix}#{$three}-#{$fifths}      { width:60%; }
+    #{$prefix}#{$four}-#{$fifths}       { width:80%; }
 
 
     /**
      * Sixths
      */
-    #{$prefix}one-sixth         { width:16.666%; }
-    #{$prefix}two-sixths        { @extend #{$prefix}one-third; }
-    #{$prefix}three-sixths      { @extend #{$prefix}one-half; }
-    #{$prefix}four-sixths       { @extend #{$prefix}two-thirds; }
-    #{$prefix}five-sixths       { width:83.333%; }
+    #{$prefix}#{$one}-#{$sixth}         { width:16.666%; }
+    #{$prefix}#{$two}-#{$sixths}        { @extend #{$prefix}#{$one}-#{$third}; }
+    #{$prefix}#{$three}-#{$sixths}      { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$four}-#{$sixths}       { @extend #{$prefix}#{$two}-#{$thirds}; }
+    #{$prefix}#{$five}-#{$sixths}       { width:83.333%; }
 
 
     /**
      * Eighths
      */
-    #{$prefix}one-eighth        { width:12.5%; }
-    #{$prefix}two-eighths       { @extend #{$prefix}one-quarter; }
-    #{$prefix}three-eighths     { width:37.5%; }
-    #{$prefix}four-eighths      { @extend #{$prefix}one-half; }
-    #{$prefix}five-eighths      { width:62.5%; }
-    #{$prefix}six-eighths       { @extend #{$prefix}three-quarters; }
-    #{$prefix}seven-eighths     { width:87.5%; }
+    #{$prefix}#{$one}-#{$eighth}        { width:12.5%; }
+    #{$prefix}#{$two}-#{$eighths}       { @extend #{$prefix}#{$one}-#{$quarter}; }
+    #{$prefix}#{$three}-#{$eighths}     { width:37.5%; }
+    #{$prefix}#{$four}-#{$eighths}      { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$five}-#{$eighths}      { width:62.5%; }
+    #{$prefix}#{$six}-#{$eighths}       { @extend #{$prefix}#{$three}-#{$quarters}; }
+    #{$prefix}#{$seven}-#{$eighths}     { width:87.5%; }
 
 
     /**
      * Tenths
      */
-    #{$prefix}one-tenth         { width:10%; }
-    #{$prefix}two-tenths        { @extend #{$prefix}one-fifth; }
-    #{$prefix}three-tenths      { width:30%; }
-    #{$prefix}four-tenths       { @extend #{$prefix}two-fifths; }
-    #{$prefix}five-tenths       { @extend #{$prefix}one-half; }
-    #{$prefix}six-tenths        { @extend #{$prefix}three-fifths; }
-    #{$prefix}seven-tenths      { width:70%; }
-    #{$prefix}eight-tenths      { @extend #{$prefix}four-fifths; }
-    #{$prefix}nine-tenths       { width:90%; }
+    #{$prefix}#{$one}-#{$tenth}         { width:10%; }
+    #{$prefix}#{$two}-#{$tenths}        { @extend #{$prefix}#{$one}-#{$fifth}; }
+    #{$prefix}#{$three}-#{$tenths}      { width:30%; }
+    #{$prefix}#{$four}-#{$tenths}       { @extend #{$prefix}#{$two}-#{$fifths}; }
+    #{$prefix}#{$five}-#{$tenths}       { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$six}-#{$tenths}        { @extend #{$prefix}#{$three}-#{$fifths}; }
+    #{$prefix}#{$seven}-#{$tenths}      { width:70%; }
+    #{$prefix}#{$eight}-#{$tenths}      { @extend #{$prefix}#{$four}-#{$fifths}; }
+    #{$prefix}#{$nine}-#{$tenths}       { width:90%; }
 
 
     /**
      * Twelfths
      */
-    #{$prefix}one-twelfth       { width:8.333%; }
-    #{$prefix}two-twelfths      { @extend #{$prefix}one-sixth; }
-    #{$prefix}three-twelfths    { @extend #{$prefix}one-quarter; }
-    #{$prefix}four-twelfths     { @extend #{$prefix}one-third; }
-    #{$prefix}five-twelfths     { width:41.666% }
-    #{$prefix}six-twelfths      { @extend #{$prefix}one-half; }
-    #{$prefix}seven-twelfths    { width:58.333%; }
-    #{$prefix}eight-twelfths    { @extend #{$prefix}two-thirds; }
-    #{$prefix}nine-twelfths     { @extend #{$prefix}three-quarters; }
-    #{$prefix}ten-twelfths      { @extend #{$prefix}five-sixths; }
-    #{$prefix}eleven-twelfths   { width:91.666%; }
+    #{$prefix}#{$one}-#{$twelfth}       { width:8.333%; }
+    #{$prefix}#{$two}-#{$twelfths}      { @extend #{$prefix}#{$one}-#{$sixth}; }
+    #{$prefix}#{$three}-#{$twelfths}    { @extend #{$prefix}#{$one}-#{$quarter}; }
+    #{$prefix}#{$four}-#{$twelfths}     { @extend #{$prefix}#{$one}-#{$third}; }
+    #{$prefix}#{$five}-#{$twelfths}     { width:41.666% }
+    #{$prefix}#{$six}-#{$twelfths}      { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$seven}-#{$twelfths}    { width:58.333%; }
+    #{$prefix}#{$eight}-#{$twelfths}    { @extend #{$prefix}#{$two}-#{$thirds}; }
+    #{$prefix}#{$nine}-#{$twelfths}     { @extend #{$prefix}#{$three}-#{$quarters}; }
+    #{$prefix}#{$ten}-#{$twelfths}      { @extend #{$prefix}#{$five}-#{$sixths}; }
+    #{$prefix}#{$eleven}-#{$twelfths}   { width:91.666%; }
 }
 
 
@@ -481,89 +527,89 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     /**
      * Whole
      */
-    #{$prefix}one-whole           { left:100%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$whole}           { left:100%; @include silent-relative; }
 
 
     /**
      * Halves
      */
-    #{$prefix}one-half            { left:50%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$half}            { left:50%; @include silent-relative; }
 
 
     /**
      * Thirds
      */
-    #{$prefix}one-third           { left:33.333%; @include silent-relative; }
-    #{$prefix}two-thirds          { left:66.666%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$third}           { left:33.333%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$thirds}          { left:66.666%; @include silent-relative; }
 
 
     /**
      * Quarters
      */
-    #{$prefix}one-quarter         { left:25%; @include silent-relative; }
-    #{$prefix}two-quarters        { @extend #{$prefix}one-half; }
-    #{$prefix}three-quarters      { left:75%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$quarter}         { left:25%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$quarters}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$three}-#{$quarters}      { left:75%; @include silent-relative; }
 
 
     /**
      * Fifths
      */
-    #{$prefix}one-fifth           { left:20%; @include silent-relative; }
-    #{$prefix}two-fifths          { left:40%; @include silent-relative; }
-    #{$prefix}three-fifths        { left:60%; @include silent-relative; }
-    #{$prefix}four-fifths         { left:80%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$fifth}           { left:20%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$fifths}          { left:40%; @include silent-relative; }
+    #{$prefix}#{$three}-#{$fifths}        { left:60%; @include silent-relative; }
+    #{$prefix}#{$four}-#{$fifths}         { left:80%; @include silent-relative; }
 
 
     /**
      * Sixths
      */
-    #{$prefix}one-sixth           { left:16.666%; @include silent-relative; }
-    #{$prefix}two-sixths          { @extend #{$prefix}one-third; }
-    #{$prefix}three-sixths        { @extend #{$prefix}one-half; }
-    #{$prefix}four-sixths         { @extend #{$prefix}two-thirds; }
-    #{$prefix}five-sixths         { left:83.333%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$sixth}           { left:16.666%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$sixths}          { @extend #{$prefix}#{$one}-#{$third}; }
+    #{$prefix}#{$three}-#{$sixths}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$four}-#{$sixths}         { @extend #{$prefix}#{$two}-#{$thirds}; }
+    #{$prefix}#{$five}-#{$sixths}         { left:83.333%; @include silent-relative; }
 
 
     /**
      * Eighths
      */
-    #{$prefix}one-eighth          { left:12.5%; @include silent-relative; }
-    #{$prefix}two-eighths         { @extend #{$prefix}one-quarter; }
-    #{$prefix}three-eighths       { left:37.5%; @include silent-relative; }
-    #{$prefix}four-eighths        { @extend #{$prefix}one-half; }
-    #{$prefix}five-eighths        { left:62.5%; @include silent-relative; }
-    #{$prefix}six-eighths         { @extend #{$prefix}three-quarters; }
-    #{$prefix}seven-eighths       { left:87.5%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$eighth}          { left:12.5%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$eighths}         { @extend #{$prefix}#{$one}-#{$quarter}; }
+    #{$prefix}#{$three}-#{$eighths}       { left:37.5%; @include silent-relative; }
+    #{$prefix}#{$four}-#{$eighths}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$five}-#{$eighths}        { left:62.5%; @include silent-relative; }
+    #{$prefix}#{$six}-#{$eighths}         { @extend #{$prefix}#{$three}-#{$quarters}; }
+    #{$prefix}#{$seven}-#{$eighths}       { left:87.5%; @include silent-relative; }
 
 
     /**
      * Tenths
      */
-    #{$prefix}one-tenth           { left:10%; @include silent-relative; }
-    #{$prefix}two-tenths          { @extend #{$prefix}one-fifth; }
-    #{$prefix}three-tenths        { left:30%; @include silent-relative; }
-    #{$prefix}four-tenths         { @extend #{$prefix}two-fifths; }
-    #{$prefix}five-tenths         { @extend #{$prefix}one-half; }
-    #{$prefix}six-tenths          { @extend #{$prefix}three-fifths; }
-    #{$prefix}seven-tenths        { left:70%; @include silent-relative; }
-    #{$prefix}eight-tenths        { @extend #{$prefix}four-fifths; }
-    #{$prefix}nine-tenths         { left:90%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$tenth}           { left:10%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$tenths}          { @extend #{$prefix}#{$one}-#{$fifth}; }
+    #{$prefix}#{$three}-#{$tenths}        { left:30%; @include silent-relative; }
+    #{$prefix}#{$four}-#{$tenths}         { @extend #{$prefix}#{$two}-#{$fifths}; }
+    #{$prefix}#{$five}-#{$tenths}         { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$six}-#{$tenths}          { @extend #{$prefix}#{$three}-#{$fifths}; }
+    #{$prefix}#{$seven}-#{$tenths}        { left:70%; @include silent-relative; }
+    #{$prefix}#{$eight}-#{$tenths}        { @extend #{$prefix}#{$four}-#{$fifths}; }
+    #{$prefix}#{$nine}-#{$tenths}         { left:90%; @include silent-relative; }
 
 
     /**
      * Twelfths
      */
-    #{$prefix}one-twelfth         { left:8.333%; @include silent-relative; }
-    #{$prefix}two-twelfths        { @extend #{$prefix}one-sixth; }
-    #{$prefix}three-twelfths      { @extend #{$prefix}one-quarter; }
-    #{$prefix}four-twelfths       { @extend #{$prefix}one-third; }
-    #{$prefix}five-twelfths       { left:41.666%; @include silent-relative; }
-    #{$prefix}six-twelfths        { @extend #{$prefix}one-half; }
-    #{$prefix}seven-twelfths      { left:58.333%; @include silent-relative; }
-    #{$prefix}eight-twelfths      { @extend #{$prefix}two-thirds; }
-    #{$prefix}nine-twelfths       { @extend #{$prefix}three-quarters; }
-    #{$prefix}ten-twelfths        { @extend #{$prefix}five-sixths; }
-    #{$prefix}eleven-twelfths     { left:91.666%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$twelfth}         { left:8.333%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$twelfths}        { @extend #{$prefix}#{$one}-#{$sixth}; }
+    #{$prefix}#{$three}-#{$twelfths}      { @extend #{$prefix}#{$one}-#{$quarter}; }
+    #{$prefix}#{$four}-#{$twelfths}       { @extend #{$prefix}#{$one}-#{$third}; }
+    #{$prefix}#{$five}-#{$twelfths}       { left:41.666%; @include silent-relative; }
+    #{$prefix}#{$six}-#{$twelfths}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$seven}-#{$twelfths}      { left:58.333%; @include silent-relative; }
+    #{$prefix}#{$eight}-#{$twelfths}      { @extend #{$prefix}#{$two}-#{$thirds}; }
+    #{$prefix}#{$nine}-#{$twelfths}       { @extend #{$prefix}#{$three}-#{$quarters}; }
+    #{$prefix}#{$ten}-#{$twelfths}        { @extend #{$prefix}#{$five}-#{$sixths}; }
+    #{$prefix}#{$eleven}-#{$twelfths}     { left:91.666%; @include silent-relative; }
 }
 
 @if $push {
@@ -601,89 +647,89 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     /**
      * Whole
      */
-    #{$prefix}one-whole           { right:100%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$whole}           { right:100%; @include silent-relative; }
 
 
     /**
      * Halves
      */
-    #{$prefix}one-half            { right:50%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$half}            { right:50%; @include silent-relative; }
 
 
     /**
      * Thirds
      */
-    #{$prefix}one-third           { right:33.333%; @include silent-relative; }
-    #{$prefix}two-thirds          { right:66.666%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$third}           { right:33.333%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$thirds}          { right:66.666%; @include silent-relative; }
 
 
     /**
      * Quarters
      */
-    #{$prefix}one-quarter         { right:25%; @include silent-relative; }
-    #{$prefix}two-quarters        { @extend #{$prefix}one-half; }
-    #{$prefix}three-quarters      { right:75%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$quarter}         { right:25%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$quarters}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$three}-#{$quarters}      { right:75%; @include silent-relative; }
 
 
     /**
      * Fifths
      */
-    #{$prefix}one-fifth           { right:20%; @include silent-relative; }
-    #{$prefix}two-fifths          { right:40%; @include silent-relative; }
-    #{$prefix}three-fifths        { right:60%; @include silent-relative; }
-    #{$prefix}four-fifths         { right:80%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$fifth}           { right:20%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$fifths}          { right:40%; @include silent-relative; }
+    #{$prefix}#{$three}-#{$fifths}        { right:60%; @include silent-relative; }
+    #{$prefix}#{$four}-#{$fifths}         { right:80%; @include silent-relative; }
 
 
     /**
      * Sixths
      */
-    #{$prefix}one-sixth           { right:16.666%; @include silent-relative; }
-    #{$prefix}two-sixths          { @extend #{$prefix}one-third; }
-    #{$prefix}three-sixths        { @extend #{$prefix}one-half; }
-    #{$prefix}four-sixths         { @extend #{$prefix}two-thirds; }
-    #{$prefix}five-sixths         { right:83.333%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$sixth}           { right:16.666%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$sixths}          { @extend #{$prefix}#{$one}-#{$third}; }
+    #{$prefix}#{$three}-#{$sixths}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$four}-#{$sixths}         { @extend #{$prefix}#{$two}-#{$thirds}; }
+    #{$prefix}#{$five}-#{$sixths}         { right:83.333%; @include silent-relative; }
 
 
     /**
      * Eighths
      */
-    #{$prefix}one-eighth          { right:12.5%; @include silent-relative; }
-    #{$prefix}two-eighths         { @extend #{$prefix}one-quarter; }
-    #{$prefix}three-eighths       { right:37.5%; @include silent-relative; }
-    #{$prefix}four-eighths        { @extend #{$prefix}one-half; }
-    #{$prefix}five-eighths        { right:62.5%; @include silent-relative; }
-    #{$prefix}six-eighths         { @extend #{$prefix}three-quarters; }
-    #{$prefix}seven-eighths       { right:87.5%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$eighth}          { right:12.5%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$eighths}         { @extend #{$prefix}#{$one}-#{$quarter}; }
+    #{$prefix}#{$three}-#{$eighths}       { right:37.5%; @include silent-relative; }
+    #{$prefix}#{$four}-#{$eighths}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$five}-#{$eighths}        { right:62.5%; @include silent-relative; }
+    #{$prefix}#{$six}-#{$eighths}         { @extend #{$prefix}#{$three}-#{$quarters}; }
+    #{$prefix}#{$seven}-#{$eighths}       { right:87.5%; @include silent-relative; }
 
 
     /**
      * Tenths
      */
-    #{$prefix}one-tenth           { right:10%; @include silent-relative; }
-    #{$prefix}two-tenths          { @extend #{$prefix}one-fifth; }
-    #{$prefix}three-tenths        { right:30%; @include silent-relative; }
-    #{$prefix}four-tenths         { @extend #{$prefix}two-fifths; }
-    #{$prefix}five-tenths         { @extend #{$prefix}one-half; }
-    #{$prefix}six-tenths          { @extend #{$prefix}three-fifths; }
-    #{$prefix}seven-tenths        { right:70%; @include silent-relative; }
-    #{$prefix}eight-tenths        { @extend #{$prefix}four-fifths; }
-    #{$prefix}nine-tenths         { right:90%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$tenth}           { right:10%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$tenths}          { @extend #{$prefix}#{$one}-#{$fifth}; }
+    #{$prefix}#{$three}-#{$tenths}        { right:30%; @include silent-relative; }
+    #{$prefix}#{$four}-#{$tenths}         { @extend #{$prefix}#{$two}-#{$fifths}; }
+    #{$prefix}#{$five}-#{$tenths}         { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$six}-#{$tenths}          { @extend #{$prefix}#{$three}-#{$fifths}; }
+    #{$prefix}#{$seven}-#{$tenths}        { right:70%; @include silent-relative; }
+    #{$prefix}#{$eight}-#{$tenths}        { @extend #{$prefix}#{$four}-#{$fifths}; }
+    #{$prefix}#{$nine}-#{$tenths}         { right:90%; @include silent-relative; }
 
 
     /**
      * Twelfths
      */
-    #{$prefix}one-twelfth         { right:8.333%; @include silent-relative; }
-    #{$prefix}two-twelfths        { @extend #{$prefix}one-sixth; }
-    #{$prefix}three-twelfths      { @extend #{$prefix}one-quarter; }
-    #{$prefix}four-twelfths       { @extend #{$prefix}one-third; }
-    #{$prefix}five-twelfths       { right:41.666%; @include silent-relative; }
-    #{$prefix}six-twelfths        { @extend #{$prefix}one-half; }
-    #{$prefix}seven-twelfths      { right:58.333%; @include silent-relative; }
-    #{$prefix}eight-twelfths      { @extend #{$prefix}two-thirds; }
-    #{$prefix}nine-twelfths       { @extend #{$prefix}three-quarters; }
-    #{$prefix}ten-twelfths        { @extend #{$prefix}five-sixths; }
-    #{$prefix}eleven-twelfths     { right:91.666%; @include silent-relative; }
+    #{$prefix}#{$one}-#{$twelfth}         { right:8.333%; @include silent-relative; }
+    #{$prefix}#{$two}-#{$twelfths}        { @extend #{$prefix}#{$one}-#{$sixth}; }
+    #{$prefix}#{$three}-#{$twelfths}      { @extend #{$prefix}#{$one}-#{$quarter}; }
+    #{$prefix}#{$four}-#{$twelfths}       { @extend #{$prefix}#{$one}-#{$third}; }
+    #{$prefix}#{$five}-#{$twelfths}       { right:41.666%; @include silent-relative; }
+    #{$prefix}#{$six}-#{$twelfths}        { @extend #{$prefix}#{$one}-#{$half}; }
+    #{$prefix}#{$seven}-#{$twelfths}      { right:58.333%; @include silent-relative; }
+    #{$prefix}#{$eight}-#{$twelfths}      { @extend #{$prefix}#{$two}-#{$thirds}; }
+    #{$prefix}#{$nine}-#{$twelfths}       { @extend #{$prefix}#{$three}-#{$quarters}; }
+    #{$prefix}#{$ten}-#{$twelfths}        { @extend #{$prefix}#{$five}-#{$sixths}; }
+    #{$prefix}#{$eleven}-#{$twelfths}     { right:91.666%; @include silent-relative; }
 }
 
 @if $pull {
