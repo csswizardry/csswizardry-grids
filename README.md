@@ -77,7 +77,7 @@ combinations. A few examples:
     /**
      * Sets an item to be ten twelfths wide only at the desk breakpoint.
      */
-    .desk--ten-twelthfs{}
+    .desk--ten-twelfths{}
 
     /**
      * Pulls an item one half of the way to the left only at the palm breakpoint.
