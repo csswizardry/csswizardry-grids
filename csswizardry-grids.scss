@@ -121,10 +121,10 @@ $use-markup-fix:        true !default;
  * that the breakpoint fires at.
  */
 $breakpoints: (
-    'palm' '(max-width: 480px)',
-    'lap' '(min-width: 481px) and (max-width: 1023px)',
-    'portable' '(max-width: 1023px)',
-    'desk' '(min-width: 1024px)'
+    'palm': '(max-width: 480px)',
+    'lap': '(min-width: 481px) and (max-width: 1023px)',
+    'portable': '(max-width: 1023px)',
+    'desk': '(min-width: 1024px)'
 ) !default;
 
 
@@ -165,10 +165,7 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 @mixin grid-media-query($media-query) {
     $breakpoint-found: false;
 
-    @each $breakpoint in $breakpoints {
-        $name: nth($breakpoint, 1);
-        $declaration: nth($breakpoint, 2);
-
+    @each $name, $query in $breakpoints {
         @if $media-query == $name and $declaration {
             $breakpoint-found: true;
 
